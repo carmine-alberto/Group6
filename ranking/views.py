@@ -92,18 +92,20 @@ tle_url = "https://tle.ivanstanojevic.me/api/tle/"
 sat_id = "43638"
 tleEndpoint = tle_url + sat_id
 satelliteData = requests.get(tleEndpoint)
+# TESTING
 #print(satelliteData)
-print(type(satelliteData))
-print(satelliteData.json()["name"])
-print(satelliteData.get("name"))
-#satelliteData DICTIONARY
+#print(type(satelliteData))
+print(satelliteData.json()["line1"])
+#print(json.loads(satelliteData).json())
+
+
 
 ## key1: name
 ## key2: line1
 ## key3: line2
 ## key4: minimumSnapshotArea
 ## key5: orbitDuration
-""" 
+ 
 #targetLocation - API request to group 5 to obtain the event location
 group5_url = "https://group5/api/" #temporarly
 event_location_data = requests.get()
@@ -114,16 +116,16 @@ event_location_data = requests.get()
 #apiInfo - API request to group 7 to obtain the information about API provider for each satellite
 group7_url = "https://group7/api/" #temporarly
 
-""" 
+ 
 
-""" 
+
 
 def predictionAlgorithm(satelliteData, targetLocation):
     # Specify the TLE data for the satellite 
     tle_data = (
-        satelliteData["name"],
-        satelliteData["line1"],
-        satelliteData["line2"]
+        satelliteData.json()["name"],
+        satelliteData.json()["line1"],
+        satelliteData.json()["line2"]
     )        
     tle = Tle(*tle_data) #TODO FIX
 
@@ -146,4 +148,4 @@ def predictionAlgorithm(satelliteData, targetLocation):
             break
         time += timedelta(seconds=dt)
 
-        """
+"""  """
