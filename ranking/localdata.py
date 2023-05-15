@@ -13,7 +13,7 @@ class eventTypes(Enum):
     
 
 
-satellites = [
+master_satellites = [
     {
         "family": "",
         "name": "Modis",

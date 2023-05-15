@@ -1,5 +1,6 @@
 import datetime
-import requests
+
+from localdata import master_satellites
 
 weight_dict = {
     'timeliness': 0.15,
@@ -16,7 +17,7 @@ weight_dict = {
 
 def api_call_to_get_the_arrival_time_of_satellite(centroid):
     time_in_utc = 1
-    #todo: get arrival time in utc 
+    #todo: get arrival time in utc @Alberto
     return time_in_utc
 
 
