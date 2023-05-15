@@ -27,6 +27,11 @@ master_satellites = [
         "minimumSnapshotArea": "",
         "orbitDuration": "",
         "worksDuringNight":"", #add for others as well @Olmare
+        "priceRating":"",#add for others as well @Olmare also ask for group 7 for this
+        "dataQualityRating":"",
+        "freequencyOfUpdateRating":"",
+        
+
     },
     {
         "family": "",
