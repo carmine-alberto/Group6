@@ -78,7 +78,7 @@ def get_data_quality_rating(satellite):
 
 
 
-def rank_satellites(subarea, master_satellites_list, weather_details, event_type):
+def rank_satellites(subarea, weather_details, event_type):
     filtered_satellites = []
     for satellite in master_satellites_list:
         if subarea["centroid"]:
