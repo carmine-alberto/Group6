@@ -91,12 +91,8 @@ def index(request):
 tle_url = "https://tle.ivanstanojevic.me/api/tle/"
 sat_id = "43638"
 tleEndpoint = tle_url + sat_id
-satelliteData = requests.get(tleEndpoint)
-# TESTING
-#print(satelliteData)
-#print(type(satelliteData))
-print(satelliteData.json()["line1"])
-#print(json.loads(satelliteData).json())
+satelliteData_request = requests.get(tleEndpoint)
+satelliteData = satelliteData_request.json()
 
 
 
@@ -123,9 +119,9 @@ group7_url = "https://group7/api/" #temporarly
 def predictionAlgorithm(satelliteData, targetLocation):
     # Specify the TLE data for the satellite 
     tle_data = (
-        satelliteData.json()["name"],
-        satelliteData.json()["line1"],
-        satelliteData.json()["line2"]
+        satelliteData["name"],
+        satelliteData["line1"],
+        satelliteData["line2"]
     )        
     tle = Tle(*tle_data) #TODO FIX
 
