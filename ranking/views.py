@@ -8,7 +8,7 @@ import json
  #SATELLITES IMPORTS
  #pyorbital.orbital TLE is missing - TODO check how to handle that
 from pyorbital import tlefile
-from datetime import datetime
+from datetime import datetime, timedelta
 from math import sqrt
 
 
@@ -110,16 +110,13 @@ group5_url = "https://group5/api/" #temporarly
 response_location_data = requests.get(group5_url)
 targetLocation = response_location_data.json()
 
-    
-
 #apiInfo - API request to group 7 to obtain the information about API provider for each satellite
 group7_url = "https://group7/api/" #temporarly
 
- 
-
-
-
-def predictionAlgorithm(satelliteData, targetLocation):
+#ENSURES
+## The arrival time (UTC) if the satellite is going to cross the target location
+## -1 if it's never going to cross the target location
+def calculate_travel_time(satelliteData, targetLocation):
     # Specify the TLE data for the satellite 
     tle_data = (
         satelliteData["name"],
@@ -136,15 +133,20 @@ def predictionAlgorithm(satelliteData, targetLocation):
     # Calculate the time required for the satellite to reach the specified location
     dt = 300 # Time interval in seconds - TODO What is the LSB we want to use?
     time = datetime.utcnow()
+    now = time;
 
     dt_per_orbit = orbitDuration / dt
     
-    while dt_per_orbit :
+    while dt_per_orbit > 0:
         pos, _ = tle.get_position(time)
         dist = pos.distance_from(lat, lon, alt)
         # Here, we should consider the area size too. If it's too large, there could be some pieces missing      
         if dist < sqrt(minimumSnapshotArea): # If satellite is within 5 km of the location, break out of the loop - TODO the threshold is selected by picking the square root of the minimum snapshot area
-            break
+            return time - now
         time += timedelta(seconds=dt)
+        dt_per_orbit -= 1
 
-"""  """
+    #Done like this because of the formula in the rating algorithm: 10(1 - delta/orbitDuration) -> 0 if no match is found
+    return orbitDuration
+
+
