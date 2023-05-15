@@ -15,15 +15,22 @@ weight_dict = {
 
 }
 
-def api_call_to_get_the_arrival_time_of_satellite(centroid):
+def api_call_to_get_the_arrival_time_duartion_of_satellite(centroid):
     time_in_utc = 1
     #todo: get arrival time in utc @Alberto
     return time_in_utc
 
 
-def get_suitability_to_weather_rating(satellite_id,weather_details):
-    weather_rating = 0
-    #todo: do the rating logic according to the lookup table
+def get_suitability_to_event_rating(satellite,event_type):
+    suitability_to_event_rating=0
+    if event_type in [e.name for e in satellite["eventTypes"]]:
+        suitability_to_event_rating=10
+    return  suitability_to_event_rating
+
+def get_suitability_to_weather_rating(satellite,weather_details):
+    visibility_threshold = satellite["visibility_threshold"]
+    visibility = weather_details["visibility"]
+    weather_rating = visibility - (1 - visibility_threshold)
     return weather_rating
 
 def get_suitability_to_time_of_day_rating(satellite_name,arrival_time_of_satellite):
@@ -63,25 +70,25 @@ def get_data_quality_rating(satellite_name):
 
 
 
-def rank_satellites(subarea, list_of_satellite, weather_details, event_type):
+def rank_satellites(subarea, master_satellites, weather_details, event_type):
     filtered_satellites = []
-    for satellite in list_of_satellite:
+    for satellite in master_satellites:
         if subarea["centroid"]:
           time_now = datetime.datetime.utcnow()  
-          arrival_time_of_satellite = api_call_to_get_the_arrival_time_of_satellite (satellite["id"],subarea["centroid"])
-          timeliness_rating = 10*(1-arrival_time_of_satellite/satellite["orbitDuration"])
+          arrival_duration_of_satellite = api_call_to_get_the_arrival_time_duartion_of_satellite(satellite["id"],subarea["centroid"])
+          timeliness_rating = 10*(1-arrival_duration_of_satellite/satellite["orbitDuration"])
         else: 
             raise Exception("Sorry, no centroid in the input.")
 
+       
         suitability_to_event_rating=0
-        if event_type in satellite["eventTypes"]:
-            suitability_to_event_rating=10
+        suitability_to_event_rating= get_suitability_to_event_rating(satellite,event_type)               
 
         suitability_to_weather_rating=0
-        suitability_to_weather_rating= get_suitability_to_weather_rating(satellite["name"],weather_details)   
+        suitability_to_weather_rating= get_suitability_to_weather_rating(satellite,weather_details)   
 
         suitability_to_time_of_day_rating = 0
-        suitability_to_time_of_day_rating= get_suitability_to_time_of_day_rating(satellite["name"],arrival_time_of_satellite)   
+        suitability_to_time_of_day_rating= get_suitability_to_time_of_day_rating(satellite,weather_details)   
 
         spatial_resolution_rating = 0
         spatial_resolution_rating= get_spatial_resolution_rating(satellite["name"])        

@@ -25,7 +25,8 @@ master_satellites = [
         "cost": "",
         "frequencyOfUpdate": 0.5,
         "minimumSnapshotArea": "",
-        "orbitDuration": ""
+        "orbitDuration": "",
+        "worksDuringNight":"", #add for others as well @Olmare
     },
     {
         "family": "",
