@@ -50,28 +50,16 @@ def index(request):
 
         aboveData = requests.get(n2yoEndpoint)
 
-        subarea_ranking = [
-            {"satName": "Landsat",
-             "timeliness": 7,
-             "suitability_to_weather_type": 3,
-             "suitability_to_time_of_the_day": 8,
-             "suitability_to_event_type": 5,
-             "spatial_resolution": 2,
-             "frequency_of_update": 6,
-             "cost": 9,
-             "data_quality": 4
-             },
-            {"satName": "Modis",
-             "timeliness": 6,
-             "suitability_to_weather_type": 3,
-             "suitability_to_time_of_the_day": 8,
-             "suitability_to_event_type": 5,
-             "spatial_resolution": 2,
-             "frequency_of_update": 6,
-             "price": 9,
-             "data_quality": 4
-             }
-        ]  # TODO ranking_algorithm(subarea, aboveData, localData)
+        weather_details = {
+            "visibility": 0.3,
+            "isDay": True
+        }
+        #TODO get from group5 data
+
+        event_type = "HURRICANE"
+        #TODO same as above
+
+        subarea_ranking = rank_satellite(subarea, weather_details, event_type) #extract details and type from group5 reply
         reply['ranking'].insert(index, {
             'ranking_ord': "asc",
             'event_id': event_id,
@@ -106,6 +94,7 @@ orbitDuration = 2
 ## key1: lat
 ## key2: lon
 ## key3: alt
+##TODO Check Varun is passing the right parameters in his calls
 group5_url = "https://group5/api/" #temporarly
 response_location_data = requests.get(group5_url)
 targetLocation = response_location_data.json()
