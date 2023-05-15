@@ -88,25 +88,28 @@ def index(request):
 
 #REQUIRES
 #satelliteData
-tle_url = "https://tle.ivanstanojevic.me/api/tle/"
-sat_id = "43638" #temporarly
-tleEndpoint = tle_url + sat_id
-satelliteData_request = requests.get(tleEndpoint)
-satelliteData = satelliteData_request.json()
-
 ## key1: name
 ## key2: line1
 ## key3: line2
 ## key4: minimumSnapshotArea
 ## key5: orbitDuration
+tle_url = "https://tle.ivanstanojevic.me/api/tle/"
+sat_id = "43638" #temporarly
+tleEndpoint = tle_url + sat_id
+satelliteData_request = requests.get(tleEndpoint)
+satelliteData = satelliteData_request.json()
+# need to be read from a file TODO
+minimumSnapshotArea = 1
+orbitDuration = 2
  
 #targetLocation - API request to group 5 to obtain the event location
-group5_url = "https://group5/api/" #temporarly
-response_location_data = requests.get(group5_url)
-targetLocation = response_location_data.json()
 ## key1: lat
 ## key2: lon
 ## key3: alt
+group5_url = "https://group5/api/" #temporarly
+response_location_data = requests.get(group5_url)
+targetLocation = response_location_data.json()
+
     
 
 #apiInfo - API request to group 7 to obtain the information about API provider for each satellite
