@@ -89,12 +89,10 @@ def index(request):
 #REQUIRES
 #satelliteData
 tle_url = "https://tle.ivanstanojevic.me/api/tle/"
-sat_id = "43638"
+sat_id = "43638" #temporarly
 tleEndpoint = tle_url + sat_id
 satelliteData_request = requests.get(tleEndpoint)
 satelliteData = satelliteData_request.json()
-
-
 
 ## key1: name
 ## key2: line1
@@ -104,10 +102,12 @@ satelliteData = satelliteData_request.json()
  
 #targetLocation - API request to group 5 to obtain the event location
 group5_url = "https://group5/api/" #temporarly
-event_location_data = requests.get()
+response_location_data = requests.get(group5_url)
+targetLocation = response_location_data.json()
 ## key1: lat
 ## key2: lon
 ## key3: alt
+    
 
 #apiInfo - API request to group 7 to obtain the information about API provider for each satellite
 group7_url = "https://group7/api/" #temporarly
@@ -136,7 +136,7 @@ def predictionAlgorithm(satelliteData, targetLocation):
 
     dt_per_orbit = orbitDuration / dt
     
-    while dt_per_orbit
+    while dt_per_orbit :
         pos, _ = tle.get_position(time)
         dist = pos.distance_from(lat, lon, alt)
         # Here, we should consider the area size too. If it's too large, there could be some pieces missing      
