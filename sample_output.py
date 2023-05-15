@@ -18,6 +18,7 @@
     "frequency_of_update": 6,
     "price": 9,
     "data_quality": 4,
+    "overall_rating":9
     },
     {
         "name": "Modis",
