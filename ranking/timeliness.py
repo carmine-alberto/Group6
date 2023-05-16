@@ -2,6 +2,7 @@ from pyorbital import tlefile
 from pyorbital.orbital import Orbital
 from datetime import datetime, timedelta
 from math import sqrt
+from math import radians
 
 # REQUIRES
 # satelliteData
@@ -15,7 +16,6 @@ from math import sqrt
 ## key1: lat
 ## key2: lon
 ## key3: alt
-## TODO Check Varun is passing the right parameters in his calls
 
 # ENSURES
 ## The arrival time (UTC) if the satellite is going to cross the target location
@@ -24,25 +24,37 @@ def calculate_travel_time(satellite_data, target_location):
     # Specify the TLE data for the satellite
     tle = Orbital(
         satellite_data["name"],
+        None,
         satellite_data["line1"],
         satellite_data["line2"]
-    )  # TODO FIX
+    )
 
     # Specify the desired location
-    lat = target_location["lat"]  # New York City latitude
-    lon = target_location["lon"]  # New York City longitude
-    alt = target_location["alt"]  # Altitude in km
+    lat = float(target_location["lat"]) # New York City latitude
+    lon = float(target_location["lon"])  # New York City longitude
+    alt = float(target_location["alt"]) # Altitude in km
 
     # Calculate the time required for the satellite to reach the specified location
     dt = 300  # Time interval in seconds - TODO What is the LSB we want to use?
     time = datetime.utcnow()
+
+    #TODO Change 72 to a suitable number, depending on satellite orbitTime
+    next_pass_list = tle.get_next_passes(time, 72, lon, lat, alt, 1)
+
+    #First element of the array as it's the closest in time; third of the tuple as it's the maximum-distance position
+    delta = next_pass_list[0][2] - time
+
+    return delta.total_seconds()
+    '''
     now = time
 
+    #Currently using built-in get_next_passes library function 
     orbit_duration = float(satellite_data["orbitDuration"])
     dt_per_orbit = orbit_duration / dt
     minimum_snapshot_area = float(satellite_data["minimumSnapshotArea"])
 
     while dt_per_orbit > 0:
+        
         pos, _ = tle.get_position(time)
         dist = pos.distance_from(lat, lon, alt) #TODO check format. Is it comparable with snapshot_area?
         # Here, we should consider the area size too. If it's too large, there could be some pieces missing
@@ -53,4 +65,7 @@ def calculate_travel_time(satellite_data, target_location):
 
     # Done like this because of the formula in the rating algorithm: 10(1 - delta/orbitDuration) -> 0 if no match is found
     return orbit_duration
+    '''
+
+
 

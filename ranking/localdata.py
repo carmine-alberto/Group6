@@ -21,7 +21,6 @@ weights = {
     'frequency_of_update': 1,
     'price': 7,
     'data_quality': 3
-
 }
 
 master_satellites = [
@@ -36,12 +35,12 @@ master_satellites = [
         "spatialResolution": 250,
         "frequencyOfUpdate": 0.5,
         "minimumSnapshotArea": 100, #in km
-        "orbitDuration": "36000", #should be in seconds
+        "orbitDuration": "76000", #should be in seconds - It could be found using tle.period
         "worksDuringNight": True, #TODO add for others as well @Olmar
         "price": 10, #TODO add for others as well @Olmar also ask for group 7 for this
         "dataQualityRating": 1
     }
-    ]
+]
 '''
     {
         "family": "",

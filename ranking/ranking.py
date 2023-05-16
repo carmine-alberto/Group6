@@ -1,15 +1,14 @@
-import datetime
 
-from views import calculate_travel_time
-from localdata import weights
+from ranking.localdata import weights
 
 #ENSURES
 #travelTime returned in seconds
+
 def get_travel_time(satellite):
     return float(satellite["travelTime"])
 
 
-def get_suitability_to_event_rating(satellite,event_type):
+def get_suitability_to_event_rating(satellite, event_type):
     suitability_to_event_rating = 0
     if event_type in [e.name for e in satellite["eventTypes"]]:
         suitability_to_event_rating = 10
@@ -21,7 +20,7 @@ def get_suitability_to_weather_rating(satellite, weather_details):
     delta = visibility - visibility_threshold #TODO threshold should be 0 for the most powerful, change it
     if delta > 0:
         return 10
-    return 10 * delta**2
+    return 10 * (delta + 1)**2
 
 def get_suitability_to_time_of_day_rating(satellite,weather_details):
     time_of_day_rating = 5
@@ -32,9 +31,11 @@ def get_suitability_to_time_of_day_rating(satellite,weather_details):
         time_of_day_rating = 0
     return time_of_day_rating
 
-
+BEST_RES = 50 #TODO Tweak
+WORST_RES = 1000
 def get_spatial_resolution_rating(satellite):
-    spatial_resolution_rating = satellite['spatialResolution']
+    #TODO the rating here should be event-based perhaps - read webpage
+    spatial_resolution_rating = 10 * (1 - (satellite['spatialResolution'] - BEST_RES) / (WORST_RES - BEST_RES))
     return spatial_resolution_rating
     
     
@@ -102,7 +103,7 @@ def rank_satellites(subarea, weather_details, event_type, satellites):
             }
         }
 
-        filtered_satellites = filtered_satellites.append(satellite_object_with_all_ratings)
+        filtered_satellites.append(satellite_object_with_all_ratings)
 
     sorted_satellite_objects = sorted(filtered_satellites, key=lambda x: x['rating'], reverse=True)
 

@@ -6,14 +6,18 @@ import requests
 import json
 
 #Local imports
-from localdata import master_satellites
+from ranking.localdata import master_satellites
 from ranking.ranking import rank_satellites
-from timeliness import calculate_travel_time
+from ranking.timeliness import calculate_travel_time
 
 
 def index(request):
     event_id = request.GET.get('event_id')
     aoi_id = request.GET.get('aoi_id')
+    # TODO We are currently using these IDs to fill in the objects.
+    # They should be used to select the ranking among the stored ones instead.
+    # The IDs to put inside the objects are retrieved from group 5 API call
+
 
     '''
     TODO Update with actual API
@@ -35,7 +39,7 @@ def index(request):
                     [100.0, 1.0], [100.0, 0.0]]
                 ]
             },
-        'centroid': {'x': '1', 'y': '2', 'z': '3'}
+        'centroid': {'x': '38.6220905', 'y': '24.5173068', 'z': '5'}
         },
         {'geometry': {
             "type": "Polygon",
@@ -44,7 +48,7 @@ def index(request):
                      [100.0, 1.0], [100.0, 0.0]]
                 ]
             },
-        'centroid': {'x': '2', 'y': '3', 'z': '5'}
+        'centroid': {'x': '38.527611', 'y': '34.2072482', 'z': '6'}
         }
     ]
 
