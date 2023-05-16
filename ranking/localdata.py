@@ -12,27 +12,37 @@ class eventTypes(Enum):
     TSUNAMI = 7
     
 
+weights = {
+    'timeliness': 10,
+    'suitability_to_weather_type': 8,
+    'suitability_to_time_of_the_day': 8,
+    'suitability_to_event_type': 8,
+    'spatial_resolution': 6,
+    'frequency_of_update': 1,
+    'price': 7,
+    'data_quality': 3
+
+}
 
 master_satellites = [
     {
-        "family": "",
-        "name": "Modis",
-        "id": "",
-        "apiName": "",
+        "family": "Modis",
+        "name": "Aqua",
+        "id": "27424",
+        "apiName": "https://randomAPI.org", #TODO get from group7
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION],
         "visibility_threshold": 0.3,
         "spatialResolution": 250,
-        "cost": "",
         "frequencyOfUpdate": 0.5,
-        "minimumSnapshotArea": "",
-        "orbitDuration": "",
-        "worksDuringNight":"", #add for others as well @Olmare
-        "priceRating":"",#add for others as well @Olmare also ask for group 7 for this
-        "dataQualityRating":"",
-        "freequencyOfUpdateRating":"",
-        
-
-    },
+        "minimumSnapshotArea": 100, #in km
+        "orbitDuration": "36000", #should be in seconds
+        "worksDuringNight": True, #TODO add for others as well @Olmar
+        "price": 10, #TODO add for others as well @Olmar also ask for group 7 for this
+        "dataQualityRating": 1
+    }
+    ]
+'''
     {
         "family": "",
         "name": "Sentinel 1",
@@ -99,8 +109,8 @@ master_satellites = [
         "orbitDuration": ""
     },
     {
-        "family": "",
-        "name": "Airbus",
+        "family": "Airbus",
+        "name": "",
         "id": "",
         "apiName": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION],
@@ -112,8 +122,8 @@ master_satellites = [
         "orbitDuration": ""
     },
     {
-        "family": "",
-        "name": "Eros-B",
+        "family": "Eros-B",
+        "name": "",
         "id": "",
         "apiName": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL],
@@ -125,8 +135,8 @@ master_satellites = [
         "orbitDuration": ""
     },
     {
-        "family": "",
-        "name": "Maxar",
+        "family": "Maxar",
+        "name": "",
         "id": "",
         "apiName": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.STORM],
@@ -136,7 +146,8 @@ master_satellites = [
         "frequencyOfUpdate": 1,
         "minimumSnapshotArea": "",
         "orbitDuration": ""
-    },
+    }
 
 ]
-
+#TODO Remove comments when the list is ready
+'''
