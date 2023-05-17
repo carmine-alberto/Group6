@@ -28,7 +28,7 @@ master_satellites = [
         "family": "Modis",
         "name": "Aqua",
         "id": "27424",
-        "apiName": "https://randomAPI.org", #TODO get from group7
+        "apiName": "https://planetarycomputer.microsoft.com/api/stac/v1",
         "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION],
         "visibility_threshold": 0.7,
@@ -37,114 +37,130 @@ master_satellites = [
         "minimumSnapshotArea": 100, #in km
         "orbitDuration": "76000", #should be in seconds - It could be found using tle.period
         "worksDuringNight": True, #TODO add for others as well @Olmar
-        "price": 0, #TODO add for others as well @Olmar also ask for group 7 for this
+        "price": 0,
         "dataQualityRating": 1
     }
 ]
 '''
     {
-        "family": "",
+        "family": "Sentinel",
         "name": "Sentinel 1",
         "id": "",
-        "apiName": "",
+        "apiName": "https://planetarycomputer.microsoft.com/api/stac/v1",
         "eventTypes": [eventTypes.FLOOD, eventTypes.EARTHQUAKE, eventTypes.OIL_SPILL],
         "visibility_threshold": 0,
         "spatialResolution": 5,
-        "cost": "",
         "frequencyOfUpdate": 6,
         "minimumSnapshotArea": "",
-        "orbitDuration": ""
+        "orbitDuration": "",
+        "worksDuringNight": True, #TODO add for others as well @Olmar
+        "price": 0,
+        "dataQualityRating": 1 #TODO 
     },
     {
-        "family": "",
+        "family": "Sentinel",
         "name": "Sentinel 2",
         "id": "",
-        "apiName": "",
+        "apiName": "https://planetarycomputer.microsoft.com/api/stac/v1",
         "eventTypes": [eventTypes.FIRE, eventTypes.FLOOD, eventTypes.VOLCANIC_ERUPTION, eventTypes.OIL_SPILL],
         "visibility_threshold": 0.9,
         "spatialResolution": 10,
-        "cost": "",
         "frequencyOfUpdate": 5,
         "minimumSnapshotArea": "",
-        "orbitDuration": ""
+        "orbitDuration": "",
+        "worksDuringNight": True, #TODO add for others as well @Olmar
+        "price": 0,
+        "dataQualityRating": 1 #TODO 
     },
     {
-        "family": "",
+        "family": "Sentinel",
         "name": "Sentinel 3",
         "id": "",
-        "apiName": "",
+        "apiName": "https://planetarycomputer.microsoft.com/api/stac/v1",
         "eventTypes": [eventTypes.STORM, eventTypes.TSUNAMI],
         "visibility_threshold": 0.9,
         "spatialResolution": 300,
-        "cost": "",
         "frequencyOfUpdate": 1,
         "minimumSnapshotArea": "",
-        "orbitDuration": ""
+        "orbitDuration": "",
+        "worksDuringNight": True, #TODO add for others as well @Olmar
+        "price": 0,
+        "dataQualityRating": 1 #TODO 
     },
     {
-        "family": "",
+        "family": "Landsat",
         "name": "Landsat 8",
         "id": "",
-        "apiName": "",
+        "apiName": "https://planetarycomputer.microsoft.com/api/stac/v1",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION],
         "visibility_threshold": 0.7,
         "spatialResolution": 15,
-        "cost": "",
         "frequencyOfUpdate": 16,
         "minimumSnapshotArea": "",
-        "orbitDuration": ""
+        "orbitDuration": "",
+        "worksDuringNight": True, #TODO add for others as well @Olmar
+        "price": 0,
+        "dataQualityRating": 1 #TODO 
     },
     {
-        "family": "",
+        "family": "Planet",
         "name": "Planet",
         "id": "",
-        "apiName": "",
+        "apiName": "https://www.planet.com/contact-sales/",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.STORM],
         "visibility_threshold": 0.2,
         "spatialResolution": 3.7,
-        "cost": "",
         "frequencyOfUpdate": 1,
         "minimumSnapshotArea": "",
-        "orbitDuration": ""
+        "orbitDuration": "",
+        "worksDuringNight": True, #TODO add for others as well @Olmar
+        "price": 14,
+        "dataQualityRating": 1 #TODO 
     },
     {
         "family": "Airbus",
-        "name": "",
+        "name": "Airbus",
         "id": "",
-        "apiName": "",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION],
         "visibility_threshold": 0.7,
         "spatialResolution": 0.5,
-        "cost": "",
         "frequencyOfUpdate": 1,
         "minimumSnapshotArea": "",
-        "orbitDuration": ""
+        "orbitDuration": "",
+        "worksDuringNight": True, #TODO add for others as well @Olmar
+        "price": 12.5,
+        "dataQualityRating": 1 #TODO 
     },
     {
         "family": "Eros-B",
-        "name": "",
+        "name": "Eros-B",
         "id": "",
-        "apiName": "",
+        "apiName": "https://apollomapping.com/buy-imagery",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL],
         "visibility_threshold": 0.7,
         "spatialResolution": 0.7,
-        "cost": "",
         "frequencyOfUpdate": 4,
         "minimumSnapshotArea": "",
-        "orbitDuration": ""
+        "orbitDuration": "",
+        "worksDuringNight": True, #TODO add for others as well @Olmar
+        "price": 6,
+        "dataQualityRating": 1 #TODO 
     },
     {
         "family": "Maxar",
-        "name": "",
+        "name": "Maxar",
         "id": "",
-        "apiName": "",
+        "apiName": "https://securewatch.maxar.com/mapservice",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.STORM],
         "visibility_threshold": 0.7,
         "spatialResolution": 0.3,
-        "cost": "",
         "frequencyOfUpdate": 1,
         "minimumSnapshotArea": "",
-        "orbitDuration": ""
+        "orbitDuration": "",
+        "worksDuringNight": True, #TODO add for others as well @Olmar
+        "price": 20,
+        "dataQualityRating": 1 #TODO 
     }
 
 ]
