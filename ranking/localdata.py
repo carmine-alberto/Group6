@@ -31,13 +31,13 @@ master_satellites = [
         "apiName": "https://randomAPI.org", #TODO get from group7
         "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION],
-        "visibility_threshold": 0.3,
+        "visibility_threshold": 0.7,
         "spatialResolution": 250,
         "frequencyOfUpdate": 0.5,
         "minimumSnapshotArea": 100, #in km
         "orbitDuration": "76000", #should be in seconds - It could be found using tle.period
         "worksDuringNight": True, #TODO add for others as well @Olmar
-        "price": 10, #TODO add for others as well @Olmar also ask for group 7 for this
+        "price": 0, #TODO add for others as well @Olmar also ask for group 7 for this
         "dataQualityRating": 1
     }
 ]
@@ -48,7 +48,7 @@ master_satellites = [
         "id": "",
         "apiName": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.EARTHQUAKE, eventTypes.OIL_SPILL],
-        "visibility_threshold": 1,
+        "visibility_threshold": 0,
         "spatialResolution": 5,
         "cost": "",
         "frequencyOfUpdate": 6,
@@ -61,7 +61,7 @@ master_satellites = [
         "id": "",
         "apiName": "",
         "eventTypes": [eventTypes.FIRE, eventTypes.FLOOD, eventTypes.VOLCANIC_ERUPTION, eventTypes.OIL_SPILL],
-        "visibility_threshold": 0.1,
+        "visibility_threshold": 0.9,
         "spatialResolution": 10,
         "cost": "",
         "frequencyOfUpdate": 5,
@@ -74,7 +74,7 @@ master_satellites = [
         "id": "",
         "apiName": "",
         "eventTypes": [eventTypes.STORM, eventTypes.TSUNAMI],
-        "visibility_threshold": 0.1,
+        "visibility_threshold": 0.9,
         "spatialResolution": 300,
         "cost": "",
         "frequencyOfUpdate": 1,
@@ -87,7 +87,7 @@ master_satellites = [
         "id": "",
         "apiName": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION],
-        "visibility_threshold": 0.3,
+        "visibility_threshold": 0.7,
         "spatialResolution": 15,
         "cost": "",
         "frequencyOfUpdate": 16,
@@ -100,7 +100,7 @@ master_satellites = [
         "id": "",
         "apiName": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.STORM],
-        "visibility_threshold": 0.8,
+        "visibility_threshold": 0.2,
         "spatialResolution": 3.7,
         "cost": "",
         "frequencyOfUpdate": 1,
@@ -113,7 +113,7 @@ master_satellites = [
         "id": "",
         "apiName": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION],
-        "visibility_threshold": 0.3,
+        "visibility_threshold": 0.7,
         "spatialResolution": 0.5,
         "cost": "",
         "frequencyOfUpdate": 1,
@@ -126,7 +126,7 @@ master_satellites = [
         "id": "",
         "apiName": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL],
-        "visibility_threshold": 0.3,
+        "visibility_threshold": 0.7,
         "spatialResolution": 0.7,
         "cost": "",
         "frequencyOfUpdate": 4,
@@ -139,7 +139,7 @@ master_satellites = [
         "id": "",
         "apiName": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.STORM],
-        "visibility_threshold": 0.3,
+        "visibility_threshold": 0.7,
         "spatialResolution": 0.3,
         "cost": "",
         "frequencyOfUpdate": 1,
