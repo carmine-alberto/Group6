@@ -1,5 +1,5 @@
 
-from ranking.localdata import weights
+from localdata import weights
 
 #ENSURES
 #travelTime returned in seconds
