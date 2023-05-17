@@ -6,9 +6,9 @@ import requests
 import json
 
 #Local imports
-from localdata import master_satellites
-from ranking import rank_satellites
-from timeliness import calculate_travel_time
+from ranking.localdata import master_satellites
+from ranking.ranking import rank_satellites
+from ranking.timeliness import calculate_travel_time
 
 
 def index(request):
