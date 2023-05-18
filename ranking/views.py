@@ -9,12 +9,13 @@ import json
 #Local imports
 from ranking.localdata import master_satellites
 from ranking.ranking import rank_satellites
-from ranking.timeliness import calculate_travel_time
+from ranking.timeliness import calculate_travel_time_and_orbit_duration
 from ranking.main import get_rankings
 
 def index(request):
     event_id = request.GET.get('event_id')
     aoi_id = request.GET.get('aoi_id')
+    #Does it produce concurrency issues?
     rankings = get_rankings()
 
     #TODO sanitize input

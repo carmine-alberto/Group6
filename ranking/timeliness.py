@@ -20,8 +20,8 @@ from math import radians
 
 # ENSURES
 ## The arrival time (UTC) if the satellite is going to cross the target location
-## -1 if it's never going to cross the target location
-def calculate_travel_time(satellite_data, target_location):
+## The orbit period
+def calculate_travel_time_and_orbit_duration(satellite_data, target_location, timestamp):
     # Specify the TLE data for the satellite
     tle = Orbital(
         satellite_data["name"],
@@ -32,12 +32,12 @@ def calculate_travel_time(satellite_data, target_location):
 
     # Specify the desired location
     lat = float(target_location["lat"]) # New York City latitude
-    lon = float(target_location["lon"])  # New York City longitude
+    lon = float(target_location["lon"]) # New York City longitude
     alt = float(target_location["alt"]) # Altitude in km
 
     # Calculate the time required for the satellite to reach the specified location
-    dt = 300  # Time interval in seconds - TODO What is the LSB we want to use?
-    time = datetime.utcnow() #TODO Replace with event timestamp
+    #dt = 300  # Time interval in seconds - TODO What is the LSB we want to use? - USED FOR A DIFFERENT ALGO, read below
+    time = timestamp
 
     #TODO Change 72 to a suitable number, depending on satellite orbitTime
     next_pass_list = tle.get_next_passes(time, 72, lon, lat, alt, 1)
@@ -45,7 +45,7 @@ def calculate_travel_time(satellite_data, target_location):
     #First element of the array as it's the closest in time; third of the tuple as it's the maximum-distance position
     delta = next_pass_list[0][2] - time
 
-    return delta.total_seconds()
+    return delta.total_seconds(), tle.orbit_elements.period
     '''
     now = time
 
