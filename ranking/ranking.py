@@ -39,16 +39,14 @@ def get_spatial_resolution_rating(satellite):
 
     spatial_resolution_rating = 10 * (1 - (satellite['spatialResolution'] - BEST_RES) / (WORST_RES - BEST_RES)) if WORST_RES != BEST_RES else 10
     return spatial_resolution_rating
-    
-    
 
         
-MAX_FOU = max(master_satellites, key=lambda satellite: satellite["frequencyOfUpdate"])
+MAX_FOU = max(master_satellites, key=lambda satellite: satellite["frequencyOfUpdate"])["frequencyOfUpdate"]
 def get_frequency_of_update_rating(satellite):
     frequency_of_update_rating = (1 - satellite["frequencyOfUpdate"]/MAX_FOU) * 10
     return frequency_of_update_rating
         
-MAX_PRICE = max(master_satellites, key=lambda satellite: satellite["price"])
+MAX_PRICE = max(master_satellites, key=lambda satellite: satellite["price"])["price"]
 def get_price_rating(satellite):
     price_rating = (1 - satellite["price"]/MAX_PRICE) * 10
     return price_rating    
@@ -91,7 +89,7 @@ def rank_satellites(subarea, weather_details, event_type, satellites):
                          weights["frequency_of_update"] * frequency_of_update_rating + \
                          weights["price"] * price_rating + \
                          weights["data_quality"] * data_quality_rating) / \
-                         sum(weights)
+                         sum(weights.values())
 
 
 

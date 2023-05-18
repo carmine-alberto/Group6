@@ -37,7 +37,7 @@ master_satellites = [
         "minimumSnapshotArea": 100, #in km
         "orbitDuration": "",# found using tle.period, don't fill
         "worksDuringNight": True, #TODO add for others as well @Olmar
-        "price": 0,
+        "price": 10,
         "dataQualityRating": 1
     }
 ]

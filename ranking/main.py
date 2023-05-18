@@ -21,7 +21,7 @@ def loop_func():
     while True:
         #TODO Update with actual API
         group5_url = "https://group5/api/"  # temporarly
-        #response_location_data = requests.get(group5_url)
+        #TODO uncomment when G5 API is ready - response_location_data = requests.get(group5_url)
 
 
         # if reply is valid
@@ -40,11 +40,11 @@ def loop_func():
                     "EventID": 10,
                     "temperature": 14.1,
                     "precipitationProbability": 0,
-                    "cloudcover": 84, #TODO FROM THIS TO VISIBILITY
+                    "cloudcover": 84,
                     "day/night": 0,
                     "centroid": {
                         "type": "Point",
-                        "coordinates": [45.464664,9.18854]
+                        "coordinates": [45.464664, 9.18854]
                     }
                 },
                 "geometry": {
