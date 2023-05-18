@@ -27,7 +27,7 @@ master_satellites = [
     {
         "family": "Modis",
         "name": "Aqua",
-        "id": "27424",
+        "id": "25994", #"27424",
         "apiName": "https://planetarycomputer.microsoft.com/api/stac/v1",
         "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION],
@@ -36,7 +36,7 @@ master_satellites = [
         "frequencyOfUpdate": 0.5,
         "minimumSnapshotArea": 100, #in km
         "orbitDuration": "",# found using tle.period, don't fill
-        "worksDuringNight": True, #TODO add for others as well @Olmar
+        "worksDuringNight": True,
         "price": 10,
         "dataQualityRating": 1
     }
