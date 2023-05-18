@@ -82,14 +82,17 @@ def rank_satellites(subarea, weather_details, event_type, satellites):
 
         data_quality_rating = get_data_quality_rating(satellite)   
 
-        overall_rating = weights["timeliness"] * timeliness_rating + \
+        overall_rating = (weights["timeliness"] * timeliness_rating + \
                          weights["suitability_to_weather_type"] * suitability_to_weather_rating + \
                          weights["suitability_to_time_of_the_day"] * suitability_to_time_of_day_rating + \
                          weights["suitability_to_event_type"] * suitability_to_event_rating + \
                          weights["spatial_resolution"] * spatial_resolution_rating + \
                          weights["frequency_of_update"] * frequency_of_update_rating + \
                          weights["price"] * price_rating + \
-                         weights["data_quality"] * data_quality_rating
+                         weights["data_quality"] * data_quality_rating) / \
+                         sum(weights)
+
+
 
         satellite_object_with_all_ratings = {
             "family": satellite["family"],
