@@ -100,7 +100,7 @@ def loop_func():
                 {
                     "id": [event_id, aoi_id],
                     "ranking": subarea_ranking
-                }
+                })
 
             time.sleep(MINIMUM_TIME_BETWEEN_EVENTS)
 
