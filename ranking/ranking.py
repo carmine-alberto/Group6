@@ -61,7 +61,7 @@ def get_data_quality_rating(satellite):
 def rank_satellites(subarea, weather_details, event_type, satellites):
     filtered_satellites = []
     for satellite in satellites:
-        if subarea["centroid"]:
+        if subarea["features"][0]["properties"]["centroid"]:
           satellite_travel_time = float(satellite["travelTime"])
           timeliness_rating = 10 * (1 - satellite_travel_time/float(satellite["orbitDuration"]))
         else: 

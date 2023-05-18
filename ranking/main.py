@@ -21,7 +21,7 @@ def loop_func():
     while True:
         #TODO Update with actual API
         group5_url = "https://group5/api/"  # temporarly
-        response_location_data = requests.get(group5_url)
+        #response_location_data = requests.get(group5_url)
 
 
         # if reply is valid
@@ -109,7 +109,7 @@ def loop_func():
                     satellite["line2"] = satellite_data["line2"]
 
                     #Attach estimatedTravelTime to each satellite
-                    (satellite["travelTime"], satellite_data["orbitDuration"]) = \
+                    satellite["travelTime"], satellite_data["orbitDuration"] = \
                         calculate_travel_time_and_orbit_duration(satellite, target_location, timestamp)
 
 
