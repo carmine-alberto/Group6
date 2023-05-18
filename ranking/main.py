@@ -1,16 +1,19 @@
+import datetime
+
 import requests
 import time
 
 #Local imports
 from ranking.localdata import master_satellites
 from ranking.ranking import rank_satellites
-from ranking.timeliness import calculate_travel_time
+from ranking.timeliness import calculate_travel_time_and_orbit_duration
 
 MINIMUM_TIME_BETWEEN_EVENTS = 300
 
 rankings = []
 def get_rankings():
     return rankings
+
 
 while True:
     #TODO Update with actual API
@@ -48,6 +51,11 @@ while True:
     for index, subarea in enumerate(subareas):
 
         # TODO Data taken from Group 5
+        event_id = 123
+        aoi_id = 34
+
+        timestamp = datetime.datetime(2023, 2, 6, 8, 0, 0) #6 Feb 23
+
         weather_details = {
             "visibility": 0.3,
             "isDay": True
@@ -87,7 +95,8 @@ while True:
             satellite["line2"] = satellite_data["line2"]
 
             #Attach estimatedTravelTime to each satellite
-            satellite["travelTime"] = calculate_travel_time(satellite, target_location)
+            (satellite["travelTime"], satellite_data["orbitDuration"]) = \
+                calculate_travel_time_and_orbit_duration(satellite, target_location, timestamp)
 
 
         subarea_ranking = rank_satellites(subarea, weather_details, event_type, satellites)
@@ -97,8 +106,11 @@ while True:
                 "id": [event_id, aoi_id],
                 "ranking": subarea_ranking
             }
+        )
 
         time.sleep(MINIMUM_TIME_BETWEEN_EVENTS)
+
+    # TODO if reply is invalid, ask again
 
 
 
