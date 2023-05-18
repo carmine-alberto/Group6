@@ -17,7 +17,7 @@ def get_suitability_to_event_rating(satellite, event_type):
 def get_suitability_to_weather_rating(satellite, weather_details):
     visibility_threshold = satellite["visibility_threshold"]
     visibility = weather_details["visibility"]
-    delta = visibility - visibility_threshold #TODO threshold should be 0 for the most powerful, change it
+    delta = visibility - visibility_threshold #TODO threshold should be 0 or close to it for the most powerful, change it
     if delta > 0:
         return 10
     return 10 * (delta + 1)**2

@@ -35,7 +35,7 @@ master_satellites = [
         "spatialResolution": 250,
         "frequencyOfUpdate": 0.5,
         "minimumSnapshotArea": 100, #in km
-        "orbitDuration": "76000", #should be in seconds - It could be found using tle.period
+        "orbitDuration": "", # found using tle.period, don't fill
         "worksDuringNight": True, #TODO add for others as well @Olmar
         "price": 0,
         "dataQualityRating": 1

@@ -1,5 +1,6 @@
 from pyorbital import tlefile
 from pyorbital.orbital import Orbital
+from pyorbital import astronomy
 from datetime import datetime, timedelta
 from math import sqrt
 from math import radians
@@ -36,7 +37,7 @@ def calculate_travel_time(satellite_data, target_location):
 
     # Calculate the time required for the satellite to reach the specified location
     dt = 300  # Time interval in seconds - TODO What is the LSB we want to use?
-    time = datetime.utcnow()
+    time = datetime.utcnow() #TODO Replace with event timestamp
 
     #TODO Change 72 to a suitable number, depending on satellite orbitTime
     next_pass_list = tle.get_next_passes(time, 72, lon, lat, alt, 1)
