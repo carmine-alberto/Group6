@@ -107,6 +107,9 @@ def index(request):
             'geometry': subarea["geometry"],
             'satlist': subarea_ranking
         })
+
+        for i in range(100):
+            print("a")
         
 
     return HttpResponse(json.dumps(reply))
