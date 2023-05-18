@@ -127,7 +127,7 @@ def loop_func():
             #REDO CALL
 
 
-schedule.every(5).minutes.do(loop_func)
+schedule.every(MINIMUM_TIME_BETWEEN_EVENTS).seconds.do(loop_func)
 
 while True:
     schedule.run_pending()
