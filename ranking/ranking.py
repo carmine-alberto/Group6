@@ -32,11 +32,12 @@ def get_suitability_to_time_of_day_rating(satellite,weather_details):
         time_of_day_rating = 0
     return time_of_day_rating
 
-BEST_RES = min(master_satellites, key=lambda satellite: satellite["spatialResolution"])
-WORST_RES = max(master_satellites, key=lambda satellite: satellite["spatialResolution"])
+BEST_RES = min(master_satellites, key=lambda satellite: satellite["spatialResolution"])["spatialResolution"]
+WORST_RES = max(master_satellites, key=lambda satellite: satellite["spatialResolution"])["spatialResolution"]
 def get_spatial_resolution_rating(satellite):
     #TODO the rating here should be event-based perhaps - read webpage
-    spatial_resolution_rating = 10 * (1 - (satellite['spatialResolution'] - BEST_RES) / (WORST_RES - BEST_RES))
+
+    spatial_resolution_rating = 10 * (1 - (satellite['spatialResolution'] - BEST_RES) / (WORST_RES - BEST_RES)) if WORST_RES != BEST_RES else 10
     return spatial_resolution_rating
     
     
