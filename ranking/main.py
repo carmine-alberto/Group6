@@ -10,7 +10,7 @@ from ranking.localdata import master_satellites
 from ranking.ranking import rank_satellites
 from ranking.timeliness import calculate_travel_time_and_orbit_duration
 
-TESTING_FACTOR = 1/60
+TESTING_FACTOR = 1
 MINIMUM_TIME_BETWEEN_EVENTS = 300 * TESTING_FACTOR
 MINIMUM_TIME_AFTER_FAILURE = 60 * TESTING_FACTOR
 
