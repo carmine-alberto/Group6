@@ -63,6 +63,9 @@ def rank_satellites(subarea, weather_details, event_type, satellites):
         if subarea["features"][0]["properties"]["centroid"]:
           satellite_travel_time = float(satellite["travelTime"])
           timeliness_rating = 10 * (1 - satellite_travel_time/float(satellite["orbitDuration"]))
+          #TODO Fix this one
+          if timeliness_rating < 0:
+              timeliness_rating = (timeliness_rating * -1) % 10
         else: 
             raise Exception("Sorry, no centroid in the input.")
 

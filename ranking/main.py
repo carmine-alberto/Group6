@@ -9,10 +9,12 @@ import threading
 from ranking.localdata import master_satellites
 from ranking.ranking import rank_satellites
 from ranking.timeliness import calculate_travel_time_and_orbit_duration
+from ranking.localdata import NASA
 
 TESTING_FACTOR = 1
 MINIMUM_TIME_BETWEEN_EVENTS = 300 * TESTING_FACTOR
 MINIMUM_TIME_AFTER_FAILURE = 60 * TESTING_FACTOR
+
 
 rankings = []
 
@@ -107,11 +109,13 @@ def polling_function():
                     sat_id = satellite["id"]
                     api_key = "woYxeCG5zRW5m3zxUe4KqLGbRsMzQaoaXLWwgjWX"
                     tle_endpoint = tle_url + sat_id + "?api_key=" + api_key
-                    #satellite_data_request = requests.get(tle_endpoint)
-                    #satellite_data = satellite_data_request.json()
 
-                    #satellite["line1"] = satellite_data["line1"]
-                    #satellite["line2"] = satellite_data["line2"]
+                    if NASA:
+                        satellite_data_request = requests.get(tle_endpoint)
+                        satellite_data = satellite_data_request.json()
+
+                        satellite["line1"] = satellite_data["line1"]
+                        satellite["line2"] = satellite_data["line2"]
 
                     # Attach estimatedTravelTime to each satellite
 
