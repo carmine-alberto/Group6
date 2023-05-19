@@ -25,12 +25,14 @@ def get_suitability_to_weather_rating(satellite, weather_details):
 
 def get_suitability_to_time_of_day_rating(satellite,weather_details):
     time_of_day_rating = 5
-    #TODO Actually, some of them work during the night only, so we should have 2 boolean, worksDuringDay too
-    if weather_details['isDay'] == True or satellite["worksDuringNight"]==True:
+    if weather_details['isDay'] == True and satellite["worksDuringDay"]==True:
         time_of_day_rating = 10
-    elif satellite["worksDuringNight"] == False and weather_details['isDay'] == False:
+    elif weather_details['isDay'] == False and satellite["worksDuringNight"]==True:
+        time_of_day_rating = 10
+    else:
         time_of_day_rating = 0
     return time_of_day_rating
+
 
 BEST_RES = min(master_satellites, key=lambda satellite: satellite["spatialResolution"])["spatialResolution"]
 WORST_RES = max(master_satellites, key=lambda satellite: satellite["spatialResolution"])["spatialResolution"]
