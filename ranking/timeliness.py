@@ -4,6 +4,7 @@ from pyorbital import astronomy
 from datetime import datetime, timedelta
 from math import sqrt
 from math import radians
+from ranking.localdata import NASA
 
 # REQUIRES
 # satelliteData
@@ -23,11 +24,14 @@ from math import radians
 ## The orbit period
 def calculate_travel_time_and_orbit_duration(satellite_data, target_location, timestamp):
     # Specify the TLE data for the satellite
+    line1 = satellite_data["line1"] if NASA == True else None
+    line2 = satellite_data["line2"] if NASA == True else None
+
     tle = Orbital(
         satellite_data["name"],
         None,
-        satellite_data["line1"],
-        satellite_data["line2"]
+        line1,
+        line2
     )
 
     # Specify the desired location
@@ -38,14 +42,16 @@ def calculate_travel_time_and_orbit_duration(satellite_data, target_location, ti
     # Calculate the time required for the satellite to reach the specified location
     #dt = 300  # Time interval in seconds - TODO What is the LSB we want to use? - USED FOR A DIFFERENT ALGO, read below
     time = timestamp
+    orbitPeriod = tle.orbit_elements.period #Assumption: it's in hours TODO CHECK
+    orbitPeriodInHours = orbitPeriod / 60
+    orbitPeriodInSeconds = orbitPeriod * 60
 
-    #TODO Change 72 to a suitable number, depending on satellite orbitTime
-    next_pass_list = tle.get_next_passes(time, 72, lon, lat, alt, 1)
+    next_pass_list = tle.get_next_passes(time, int(orbitPeriod + 5), lon, lat, alt, 1)
 
     #First element of the array as it's the closest in time; third of the tuple as it's the maximum-distance position
     delta = next_pass_list[0][2] - time
 
-    return delta.total_seconds(), tle.orbit_elements.period
+    return delta.total_seconds(), orbitPeriodInSeconds
     '''
     now = time
 

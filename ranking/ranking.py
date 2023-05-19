@@ -32,22 +32,21 @@ def get_suitability_to_time_of_day_rating(satellite,weather_details):
         time_of_day_rating = 0
     return time_of_day_rating
 
-BEST_RES = min(master_satellites, key=lambda satellite: satellite["spatialResolution"])
-WORST_RES = max(master_satellites, key=lambda satellite: satellite["spatialResolution"])
+BEST_RES = min(master_satellites, key=lambda satellite: satellite["spatialResolution"])["spatialResolution"]
+WORST_RES = max(master_satellites, key=lambda satellite: satellite["spatialResolution"])["spatialResolution"]
 def get_spatial_resolution_rating(satellite):
     #TODO the rating here should be event-based perhaps - read webpage
-    spatial_resolution_rating = 10 * (1 - (satellite['spatialResolution'] - BEST_RES) / (WORST_RES - BEST_RES))
+
+    spatial_resolution_rating = 10 * (1 - (satellite['spatialResolution'] - BEST_RES) / (WORST_RES - BEST_RES)) if WORST_RES != BEST_RES else 10
     return spatial_resolution_rating
-    
-    
 
         
-MAX_FOU = max(master_satellites, key=lambda satellite: satellite["frequencyOfUpdate"])
+MAX_FOU = max(master_satellites, key=lambda satellite: satellite["frequencyOfUpdate"])["frequencyOfUpdate"]
 def get_frequency_of_update_rating(satellite):
     frequency_of_update_rating = (1 - satellite["frequencyOfUpdate"]/MAX_FOU) * 10
     return frequency_of_update_rating
         
-MAX_PRICE = max(master_satellites, key=lambda satellite: satellite["price"])
+MAX_PRICE = max(master_satellites, key=lambda satellite: satellite["price"])["price"]
 def get_price_rating(satellite):
     price_rating = (1 - satellite["price"]/MAX_PRICE) * 10
     return price_rating    
@@ -61,9 +60,12 @@ def get_data_quality_rating(satellite):
 def rank_satellites(subarea, weather_details, event_type, satellites):
     filtered_satellites = []
     for satellite in satellites:
-        if subarea["centroid"]:
+        if subarea["features"][0]["properties"]["centroid"]:
           satellite_travel_time = float(satellite["travelTime"])
           timeliness_rating = 10 * (1 - satellite_travel_time/float(satellite["orbitDuration"]))
+          #TODO Fix this one
+          if timeliness_rating < 0:
+              timeliness_rating = (timeliness_rating * -1) % 10
         else: 
             raise Exception("Sorry, no centroid in the input.")
 
@@ -90,7 +92,7 @@ def rank_satellites(subarea, weather_details, event_type, satellites):
                          weights["frequency_of_update"] * frequency_of_update_rating + \
                          weights["price"] * price_rating + \
                          weights["data_quality"] * data_quality_rating) / \
-                         sum(weights)
+                         sum(weights.values())
 
 
 
