@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 import requests
 import json
-
+import dateutil
 
 #Local imports
 from ranking.localdata import master_satellites
@@ -14,14 +14,43 @@ from ranking.main import get_rankings
 
 rankings = []
 
+
+def validate_date(date):
+    try:
+        dateutil.parser.parse(date)
+        return True
+    except Exception as e:
+        return False
+
+
 def index(request):
     event_id = request.GET.get('event_id')
     aoi_id = request.GET.get('aoi_id')
+
+    reply = {}
+    #Input checks on query parameters
+    ''''''
+    event_id_sep=event_id.split(sep='-')
+    if event_id_sep[0]!="gr1" and event_id_sep[0]!="gr2":
+        reply['ranking'] = "The provided ID tuple doesn't have the correct format: the group is wrong"
+    elif event_id_sep[1].isalpha()==False:
+        reply['ranking'] = "The provided ID tuple doesn't have the correct format: the country is wrong"
+    elif validate_date(event_id_sep[2])==False or validate_date(event_id_sep[3])==False:
+        reply['ranking'] = "The provided ID tuple doesn't have the correct format: the date-time is wrong"
+    elif event_id_sep[4].isalpha()==False: #check only string or is not in eventTypes too?
+        reply['ranking'] = "The provided ID tuple doesn't have the correct format: the event type is wrong"
+    
+    print(event_id_sep)
+    #if aoi_id: 
+    # aoi_id=
+    # event_id=gr1 o gr2-country-date-time (utc) - date-time+12-event_type
+    #    reply['ranking'] = "The provided ID tuple doesn't have the correct format"
+
     rankings = get_rankings()
 
     #TODO sanitize input
 
-    reply = {}
+    
     for ranking in rankings:
         if ranking["id"]["event_id"] == event_id and ranking["id"]["aoi_id"] == aoi_id:
             reply['ranking'] = ranking["ranking"]

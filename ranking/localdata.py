@@ -170,7 +170,6 @@ master_satellites = [
         "id": "32060",
         "apiName": "https://securewatch.maxar.com/mapservice",
         "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
-        "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
         "visibility_threshold": 0.3,
         "spatialResolution": 0.5,
         "frequencyOfUpdate": 1,
