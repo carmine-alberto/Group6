@@ -40,14 +40,10 @@ def index(request):
         reply['ranking'] = "The provided ID tuple doesn't have the correct format: the country is wrong"
     elif validate_date(event_id_sep[2])==False or validate_date(event_id_sep[3])==False:
         reply['ranking'] = "The provided ID tuple doesn't have the correct format: the date-time is wrong"
-    elif event_id_sep[4].isalpha()==False: #check only string or is not in eventTypes too?
+    elif event_id_sep[4].isalpha()==False: 
         reply['ranking'] = "The provided ID tuple doesn't have the correct format: the event type is wrong"
     
-    print(event_id_sep)
-    #if aoi_id: 
-    # aoi_id=1-999
-    # event_id=gr1 o gr2-country-date-time (utc) - date-time+12-event_type
-    #    reply['ranking'] = "The provided ID tuple doesn't have the correct format"
+    
 
     rankings = get_rankings()
 
