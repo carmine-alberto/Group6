@@ -1,6 +1,6 @@
 from enum import Enum
 
-NASA = True
+NASA = False
 
 class eventTypes(Enum):
 

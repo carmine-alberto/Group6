@@ -111,6 +111,7 @@ def polling_function():
                     tle_endpoint = tle_url + sat_id + "?api_key=" + api_key
 
                     if NASA:
+                        time.sleep(0.01)
                         satellite_data_request = requests.get(tle_endpoint)
                         satellite_data = satellite_data_request.json()
 
