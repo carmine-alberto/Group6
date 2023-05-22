@@ -39,6 +39,7 @@ master_satellites = [
         "swathWidth": 2.330, #in km
         "orbitDuration": "76000", #should be in seconds - It could be found using tle.period
         "worksDuringNight": True, 
+        "worksDuringDay": True, 
         "price": 6, #group 7
         "dataQualityRating": 10
     },
@@ -54,7 +55,8 @@ master_satellites = [
         "frequencyOfUpdate": 1,
         "swathWidth": 2330, #in km
         "orbitDuration": "", #should be in seconds - It could be found using tle.period
-        "worksDuringNight": False,
+        "worksDuringNight": True,
+        "worksDuringDay": True, 
         "price": 6, #group 7
         "dataQualityRating": 10
     },
@@ -71,6 +73,7 @@ master_satellites = [
         "swathWidth": 250, #km
         "orbitDuration": "", #with the function
         "worksDuringNight": True, 
+        "worksDuringDay": False, 
         "price": 0, #from group 7
         "dataQualityRating": 10
     },
@@ -87,6 +90,7 @@ master_satellites = [
         "swathWidth": 290,
         "orbitDuration": "", #with the function
         "worksDuringNight": False, 
+        "worksDuringDay": True, 
         "price": 0,
         "dataQualityRating": 10
     },
@@ -103,6 +107,7 @@ master_satellites = [
         "swathWidth": 1270,
         "orbitDuration": "", #with the function
         "worksDuringNight": True,
+        "worksDuringDay": True, 
         "price": 0,
         "dataQualityRating": 10
     },
@@ -119,6 +124,7 @@ master_satellites = [
         "swathWidth": 185,
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
+        "worksDuringDay": True, 
         "price": 0,
         "dataQualityRating": 10
     },
@@ -134,7 +140,8 @@ master_satellites = [
         "frequencyOfUpdate": 4,
         "swathWidth": 12,
         "orbitDuration": "", #with the function
-        "worksDuringNight": False,
+        "worksDuringNight": True,
+        "worksDuringDay": True, 
         "price": 6,
         "dataQualityRating": 10
     },
@@ -150,7 +157,8 @@ master_satellites = [
         "frequencyOfUpdate": 1, 
         "swathWidth": 10,
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #also during the day
+        "worksDuringNight": True, 
+        "worksDuringDay": True, 
         "price": 14,
         "dataQualityRating": 10
     },
@@ -168,7 +176,8 @@ master_satellites = [
         "frequencyOfUpdate": 1,
         "swathWidth": 17.6,
         "orbitDuration": "", #with the function
-        "worksDuringNight": False, 
+        "worksDuringNight": True, 
+        "worksDuringDay": True, 
         "price": 20,
         "dataQualityRating": 10
     },
@@ -184,13 +193,15 @@ master_satellites = [
         "frequencyOfUpdate": 1,
         "swathWidth": "",
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #also during day
+        "worksDuringNight": True, 
+        "worksDuringDay": True, 
         "price": 12.5,
         "dataQualityRating": 10
     }
 ]
 
 #TODO Remove comments when the list is ready
+#TODO @Giulia check worksDuringNight and worksDuringDay values
 
 '''
     {

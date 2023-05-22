@@ -68,7 +68,7 @@ def create_ranking(subarea, weather_details, event_type, satellites):
                 weather_details = {
                     "visibility": 1 - float(subarea["features"][0]["properties"]["cloudcover"]) / 100,
                     "isDay": True if subarea["features"][0]["properties"]["day/night"] == 0 else False
-                    # TODO Ask whether 0 is day or night
+                    # 0 for day
                 }
 
                 event_type = "EARTHQUAKE"  # TODO MISSING: ask them
