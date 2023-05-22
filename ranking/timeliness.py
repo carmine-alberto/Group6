@@ -51,7 +51,7 @@ def calculate_travel_time_and_orbit_duration(satellite_data, target_location, ti
     #First element of the array as it's the closest in time; third of the tuple as it's the maximum-distance position
     delta = next_pass_list[0][2] - time
 
-    return delta.total_seconds(), orbitPeriodInSeconds
+    return delta.total_seconds()
     '''
     now = time
 

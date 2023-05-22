@@ -6,6 +6,7 @@ import json
 
 #Local imports
 from utils import parse_body
+from main import create_ranking
 
 rankings = []
 
@@ -28,7 +29,7 @@ def index(request):
                 break
 
         if not ranking_exists:
-            ranking = main(subarea, weather_details, event_type, satellites)
+            ranking = create_ranking(subarea, weather_details, event_type, satellites)
 
             reply['ranking'] = {
                 "ranking_ord": "desc",

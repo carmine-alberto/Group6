@@ -99,13 +99,13 @@ def create_ranking(subarea, weather_details, event_type, satellites):
                         satellite_data_request = requests.get(n2yo_endpoint)
                         satellite_data = satellite_data_request.json()
 
-                        satellite["line1"] = satellite_data["line1"]
-                        satellite["line2"] = satellite_data["line2"]
+                        tle = satellite_data["tle"].split(sep="\r\n")
+                        satellite["line1"] = tle[0]
+                        satellite["line2"] = tle[1] #TODO make sure this the lines are extracted properly
 
                     # Attach estimatedTravelTime to each satellite
 
-                    satellite["travelTime"], satellite["orbitDuration"] = \
-                        calculate_travel_time_and_orbit_duration(satellite, target_location, timestamp)
+                    satellite["travelTime"] = calculate_travel_time_and_orbit_duration(satellite, target_location, timestamp)
 
                 subarea_ranking = rank_satellites(subarea, weather_details, event_type, satellites)
 
