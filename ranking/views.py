@@ -30,6 +30,9 @@ def index(request):
     reply = {}
     #Input checks on query parameters
     ''''''
+    if aoi_id<1 or aoi_id>999:
+        reply['ranking'] = "The provided ID tuple doesn't have the correct format: the aoi has not a correct id"
+
     event_id_sep=event_id.split(sep='-')
     if event_id_sep[0]!="gr1" and event_id_sep[0]!="gr2":
         reply['ranking'] = "The provided ID tuple doesn't have the correct format: the group is wrong"
@@ -42,7 +45,7 @@ def index(request):
     
     print(event_id_sep)
     #if aoi_id: 
-    # aoi_id=
+    # aoi_id=1-999
     # event_id=gr1 o gr2-country-date-time (utc) - date-time+12-event_type
     #    reply['ranking'] = "The provided ID tuple doesn't have the correct format"
 
