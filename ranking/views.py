@@ -1,36 +1,46 @@
 from django.shortcuts import render
 
 from django.http import HttpResponse
-from django.http import JsonResponse
-import requests
 import json
 
 
 #Local imports
-from ranking.localdata import master_satellites
-from ranking.ranking import rank_satellites
-from ranking.timeliness import calculate_travel_time_and_orbit_duration
-from ranking.main import get_rankings
+from utils import parse_body
 
 rankings = []
 
 def index(request):
-    event_id = request.GET.get('event_id')
-    aoi_id = request.GET.get('aoi_id')
-    rankings = get_rankings()
+    if request.method == "POST":
+        body = parse_body()
+        event_id = body['event_id']
+        aoi_id = body['aoi_id']
 
-    #TODO sanitize input
+        weather_data = 0 #PARSE
 
-    reply = {}
-    for ranking in rankings:
-        if ranking["id"]["event_id"] == event_id and ranking["id"]["aoi_id"] == aoi_id:
-            reply['ranking'] = ranking["ranking"]
 
-    if reply == {}:
-        reply['ranking'] = "The provided ID tuple doesn't match any ranking in our database"
+        #TODO sanitize input
 
-    #TODO Return JSON, not HTTP
-    return HttpResponse(json.dumps(reply))
+        reply = {}
+        ranking_exists = False
+        for ranking in rankings:
+            if ranking["id"]["event_id"] == event_id and ranking["id"]["aoi_id"] == aoi_id:
+                ranking_exists = True
+                break
+
+        if not ranking_exists:
+            ranking = main(subarea, weather_details, event_type, satellites)
+
+            reply['ranking'] = {
+                "ranking_ord": "desc",
+                'event_id': event_id,
+                'aoi_id': aoi_id,
+                'sub_area_centroid': [ranking["centroid"]["coordinates"][0], ranking["centroid"]["coordinates"][1], "0"],
+                'geometry': ranking["geometry"],
+                'satList': ranking["ranking"]
+            }
+
+        #TODO Return JSON, not HTTP
+        return HttpResponse(json.dumps(reply))
 
 
 

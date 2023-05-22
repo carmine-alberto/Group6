@@ -1,6 +1,6 @@
 from enum import Enum
 
-NASA = False
+external_API_enabled = False
 
 class eventTypes(Enum):
 

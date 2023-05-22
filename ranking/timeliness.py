@@ -4,7 +4,7 @@ from pyorbital import astronomy
 from datetime import datetime, timedelta
 from math import sqrt
 from math import radians
-from ranking.localdata import NASA
+from ranking.localdata import external_API_enabled
 
 # REQUIRES
 # satelliteData
@@ -24,8 +24,8 @@ from ranking.localdata import NASA
 ## The orbit period
 def calculate_travel_time_and_orbit_duration(satellite_data, target_location, timestamp):
     # Specify the TLE data for the satellite
-    line1 = satellite_data["line1"] if NASA == True else None
-    line2 = satellite_data["line2"] if NASA == True else None
+    line1 = satellite_data["line1"] if external_API_enabled == True else None
+    line2 = satellite_data["line2"] if external_API_enabled == True else None
 
     tle = Orbital(
         satellite_data["name"],

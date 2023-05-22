@@ -1,15 +1,12 @@
 import datetime
 
 import requests
-import time
-import threading
-
 
 #Local imports
 from ranking.localdata import master_satellites
 from ranking.ranking import rank_satellites
 from ranking.timeliness import calculate_travel_time_and_orbit_duration
-from ranking.localdata import NASA
+from ranking.localdata import external_API_enabled
 
 TESTING_FACTOR = 1
 MINIMUM_TIME_BETWEEN_EVENTS = 300 * TESTING_FACTOR
@@ -18,16 +15,8 @@ MINIMUM_TIME_AFTER_FAILURE = 60 * TESTING_FACTOR
 
 rankings = []
 
-def get_rankings():
-    return rankings
-
-
-def polling_function():
-
-    while True:
-        # TODO Update with actual API
+def create_ranking(subarea, weather_details, event_type, satellites):
         group5_url = "https://group5/api/"  # temporarly
-        # TODO uncomment when G5 API is ready - response_location_data = requests.get(group5_url)
 
         # if reply is valid
         # Hardcoded - will be retrieved from Group 5 API
@@ -69,6 +58,8 @@ def polling_function():
 
                 event_id = subarea["features"][0]["properties"]["EventID"]
                 aoi_id = subarea["features"][0]["properties"]["AOI_ID"]
+                centroid = subarea["features"][0]["properties"]["centroid"]
+                geometry = subarea["features"][0]["geometry"]
 
                 date_format = "%Y-%m-%dT%H:%M:%S"
                 timestamp = datetime.datetime.strptime(subarea["features"][0]["properties"]["time"],
@@ -90,28 +81,22 @@ def polling_function():
 
                 satellites = master_satellites
 
-                '''
-                Not using this snippet right now - left for future improvements
-
-                # url = "https://api.n2yo.com/rest/v1/satellite/above/41.702/-76.014/0/70/18/&apiKey=RFLDHD-2N265V-UFLW6Z-512K"
-                start_url = "https://api.n2yo.com/rest/v1/satellite/above/"
-                # TODO Check other parameters now hardcoded like altitude (0)
-                api_key = "/0/70/18/&apiKey=RFLDHD-2N265V-UFLW6Z-512K"
+                n2yo_url = "https://api.n2yo.com/rest/v1/satellite/tle/"
+                api_key = "apiKey=RFLDHD-2N265V-UFLW6Z-512K"
 
                 # Call n2yo to check what satellites are close to the received area
-                n2yo_endpoint = start_url + target_location["lat"] + '/' + target_location["lon"] + api_key
-                above_data = requests.get(n2yo_endpoint)
-                '''
 
+                '''
                 # Call to NASA API to get satellite TLE data
+                Removed, now using N2YO
                 tle_url = "https://tle.ivanstanojevic.me/api/tle/"
+                '''
                 for satellite in satellites:
                     sat_id = satellite["id"]
-                    api_key = "woYxeCG5zRW5m3zxUe4KqLGbRsMzQaoaXLWwgjWX"
-                    tle_endpoint = tle_url + sat_id + "?api_key=" + api_key
+                    n2yo_endpoint = n2yo_url + sat_id + "?" + api_key
 
-                    if NASA:
-                        satellite_data_request = requests.get(tle_endpoint)
+                    if external_API_enabled:
+                        satellite_data_request = requests.get(n2yo_endpoint)
                         satellite_data = satellite_data_request.json()
 
                         satellite["line1"] = satellite_data["line1"]
@@ -126,15 +111,14 @@ def polling_function():
 
                 rankings.append({
                     "id": {"event_id": event_id, "aoi_id": aoi_id},
+                    "centroid": centroid,
+                    "geometry": geometry,
                     "ranking": subarea_ranking
                 })
 
                 print(rankings)
-                time.sleep(MINIMUM_TIME_BETWEEN_EVENTS)
-
         else:
             print("Empty reply: no events")
-            time.sleep(MINIMUM_TIME_AFTER_FAILURE)
 
 
 

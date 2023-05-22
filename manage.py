@@ -2,15 +2,10 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-import threading
-
-from ranking.main import polling_function
 
 
 def main():
     """Run administrative tasks."""
-    parallel_thread = threading.Thread(target=polling_function, args=())
-    parallel_thread.start()
 
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
     try:
