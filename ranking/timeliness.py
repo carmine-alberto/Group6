@@ -25,7 +25,7 @@ SLACK = 1
 # ENSURES
 ## The arrival time (UTC) if the satellite is going to cross the target location
 ## The orbit period
-def calculate_travel_time_and_orbit_duration(satellite_data, target_location, timestamp, subarea_parameters):
+def calculate_travel_time_and_weather_details(satellite_data, target_location, timestamp, subarea_parameters):
     # Specify the TLE data for the satellite
     line1 = satellite_data["line1"] if external_API_enabled == True else None
     line2 = satellite_data["line2"] if external_API_enabled == True else None
@@ -70,16 +70,22 @@ def calculate_travel_time_and_orbit_duration(satellite_data, target_location, ti
     delta_arrival_closest = arrival_timestamp - get_timestamp(subarea_parameters["time"][left_offset])
     position_in_hourly_interval = delta_arrival_closest.total_seconds() / MINUTES_PER_HOUR * SECONDS_PER_MINUTE #TODO check it's float
     weight = position_in_hourly_interval / 100
-
-    cloudiness_weight = 0.8
-    rain_weight = 0.2
-    cloudcover = interpolate(float(subarea_parameters["cloudcover"][left_offset]), float(subarea_parameters["cloudcover"][right_offset]), weight) / 100 * cloudiness_weight
-    rain = interpolate(float(subarea_parameters["cloudcover"][left_offset]), float(subarea_parameters["cloudcover"][right_offset]), weight) / 100 * rain_weight
-    visibility = 1 - (cloudcover + rain)
-    is_day = True if subarea_parameters["is_day"][left_offset] == 1 else False
+    visibility, is_day = populate_weather_params(subarea_parameters, left_offset, right_offset, weight)
 
     return delta_arrival_event.total_seconds(), {"visibility": visibility, "is_day": is_day}
 
+
+def populate_weather_params(subarea_parameters, left_offset, right_offset, weight):
+    cloudiness_weight = 0.8
+    rain_weight = 0.2
+    cloudcover = interpolate(float(subarea_parameters["cloudcover"][left_offset]),
+                             float(subarea_parameters["cloudcover"][right_offset]), weight) / 100 * cloudiness_weight
+    rain = interpolate(float(subarea_parameters["cloudcover"][left_offset]),
+                       float(subarea_parameters["cloudcover"][right_offset]), weight) / 100 * rain_weight
+    visibility = 1 - (cloudcover + rain)
+    is_day = True if subarea_parameters["is_day"][left_offset] == 1 else False
+
+    return visibility, is_day
 
 
 

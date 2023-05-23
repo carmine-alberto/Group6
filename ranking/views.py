@@ -12,13 +12,14 @@ from ranking.main import create_ranking
 rankings = []
 
 def index(request):
+    if request.method == "GET":
+        if request.method == "GET":
+            return HttpResponse(
+                '<body>            <form            method = "post"            action = "http://127.0.0.1:8000/ranking/" >            <input            type = "text"            name = "input1" >            <input            type = "text"            name = "input2" >            <input            type = "submit"            value = "Submit" >        </form>        </body>')
     if request.method == "POST":
-        body = parse_body() #WEATHER DATA + EVENT + AOI + LOCATION
-        event_id = body['event_id']
-        aoi_id = body['aoi_id']
-
-        weather_data = 0 #PARSE
-
+        subareas = parse_body() #WEATHER DATA + EVENT + AOI + LOCATION
+        event_id = subareas[0]["sxk"]["EventID"][0] #TODO should be sxk-independent
+        aoi_id = subareas[0]["sxk"]["AOI_ID"][0]
 
         #TODO sanitize input
 
@@ -30,7 +31,7 @@ def index(request):
                 break
 
         if not ranking_exists:
-            ranking = create_ranking(subarea, weather_details, event_type, satellites)
+            ranking = create_ranking(subareas, weather_details, event_type, satellites)
 
             reply['ranking'] = {
                 "ranking_ord": "desc",

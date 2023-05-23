@@ -8,7 +8,7 @@ import geohash
 #Local imports
 from ranking.localdata import master_satellites
 from ranking.ranking import rank_satellites
-from ranking.timeliness import calculate_travel_time_and_orbit_duration
+from ranking.timeliness import calculate_travel_time_and_weather_details
 from ranking.localdata import external_API_enabled
 from ranking.utils import parse_body
 
@@ -19,7 +19,7 @@ MINIMUM_TIME_AFTER_FAILURE = 60 * TESTING_FACTOR
 
 rankings = []
 
-def create_ranking(subarea_parameters, weather_details, event_type, satellites):
+def create_ranking(subarea_parameters, satellites):
 
         subareas = parse_body()
 
@@ -48,14 +48,6 @@ def create_ranking(subarea_parameters, weather_details, event_type, satellites):
                 timestamp = datetime.datetime.strptime(datetime,
                                                        date_format)  # 6 Feb 23 - Comment when out of demo
 
-
-                satellites = master_satellites
-
-                n2yo_url = "https://api.n2yo.com/rest/v1/satellite/tle/"
-                api_key = "RFLDHD-2N265V-UFLW6Z-512K"
-
-                # Call n2yo to check what satellites are close to the received area
-
                 '''
                 # Call to NASA API to get satellite TLE data
                 Removed, now using N2YO
@@ -66,7 +58,10 @@ def create_ranking(subarea_parameters, weather_details, event_type, satellites):
                     "lon": lon,
                     "alt": alt
                 }
+                satellites = master_satellites
 
+                n2yo_url = "https://api.n2yo.com/rest/v1/satellite/tle/"
+                api_key = "RFLDHD-2N265V-UFLW6Z-512K"
                 for satellite in satellites:
                     sat_id = satellite["id"]
                     n2yo_endpoint = n2yo_url + sat_id + "?" + "apiKey=" + api_key
@@ -81,9 +76,10 @@ def create_ranking(subarea_parameters, weather_details, event_type, satellites):
                         satellite["line2"] = tle[1] #TODO make sure the lines are extracted properly
 
                     # Attach estimatedTravelTime to each satellite and obtain weather details in that specific location
-                    satellite["travelTime"], weather_details = calculate_travel_time_and_orbit_duration(satellite, target_location, timestamp, subarea_parameters)
+                    satellite["travelTime"], satellite["weatherConditions"] = \
+                        calculate_travel_time_and_weather_details(satellite, target_location, timestamp, subarea_parameters)
 
-                subarea_ranking = rank_satellites(subarea_parameters, weather_details, event_type, satellites)
+                subarea_ranking = rank_satellites(subarea_parameters, event_type, satellites)
 
                 rankings.append({
                     "id": {"event_id": event_id, "aoi_id": aoi_id},
@@ -91,7 +87,7 @@ def create_ranking(subarea_parameters, weather_details, event_type, satellites):
                     "ranking": subarea_ranking
                 })
 
-                print(rankings)
+            print(rankings)
         else:
             print("Empty reply: no events")
 

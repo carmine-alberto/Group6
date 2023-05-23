@@ -15,19 +15,19 @@ def get_suitability_to_event_rating(satellite, event_type):
         suitability_to_event_rating = 10
     return suitability_to_event_rating
 
-def get_suitability_to_weather_rating(satellite, weather_details):
-    visibility_threshold = satellite["visibility_threshold"]
-    visibility = weather_details["visibility"]
+def get_suitability_to_weather_rating(satellite):
+    visibility_threshold = satellite["visibility_threshold"] #TODO Follow camelCase convention -.-"
+    visibility = satellite["weatherConditions"]["visibility"]
     delta = visibility - visibility_threshold
     if delta > 0:
         return 10
     return 10 * (delta + 1)**2  #Delta is negative and [0, 1] in modulus
 
-def get_suitability_to_time_of_day_rating(satellite,weather_details):
+def get_suitability_to_time_of_day_rating(satellite):
     time_of_day_rating = 5
-    if weather_details['isDay'] == True and satellite["worksDuringDay"]==True:
+    if satellite["weatherConditions"]['isDay'] == True and satellite["worksDuringDay"]==True:
         time_of_day_rating = 10
-    elif weather_details['isDay'] == False and satellite["worksDuringNight"]==True:
+    elif satellite["weatherConditions"]['isDay'] == False and satellite["worksDuringNight"]==True:
         time_of_day_rating = 10
     else:
         time_of_day_rating = 0
@@ -59,63 +59,62 @@ def get_data_quality_rating(satellite):
     return data_quality_rating   
 
 
-def rank_satellites(subarea, weather_details, event_type, satellites):
+def rank_satellites(subarea, event_type, satellites):
     filtered_satellites = []
     for satellite in satellites:
-        if subarea["features"][0]["properties"]["centroid"]: #TODO new format, handle
-          satellite_travel_time = float(satellite["travelTime"])
-          timeliness_rating = 10 * (1 - satellite_travel_time/float(satellite["temporalResolution"]))
+      satellite_travel_time = float(satellite["travelTime"])
+      timeliness_rating = 10 * (1 - satellite_travel_time/float(satellite["temporalResolution"]))
 
-          if timeliness_rating < 0:
-              timeliness_rating = (timeliness_rating * -1) % 10
-        else: 
-            raise Exception("Sorry, no centroid in the input.")
-
-
-        suitability_to_event_rating = get_suitability_to_event_rating(satellite,event_type)
-
-        suitability_to_weather_rating= get_suitability_to_weather_rating(satellite,weather_details)   
-
-        suitability_to_time_of_day_rating= get_suitability_to_time_of_day_rating(satellite,weather_details)   
-
-        spatial_resolution_rating= get_spatial_resolution_rating(satellite)
-
-        frequency_of_update_rating= get_frequency_of_update_rating(satellite)
-
-        price_rating = get_price_rating(satellite) 
-
-        data_quality_rating = get_data_quality_rating(satellite)   
-
-        overall_rating = (weights["timeliness"] * timeliness_rating + \
-                         weights["suitability_to_weather_type"] * suitability_to_weather_rating + \
-                         weights["suitability_to_time_of_the_day"] * suitability_to_time_of_day_rating + \
-                         weights["suitability_to_event_type"] * suitability_to_event_rating + \
-                         weights["spatial_resolution"] * spatial_resolution_rating + \
-                         weights["frequency_of_update"] * frequency_of_update_rating + \
-                         weights["price"] * price_rating + \
-                         weights["data_quality"] * data_quality_rating) / \
-                         sum(weights.values())
+      if timeliness_rating < 0:
+          timeliness_rating = (timeliness_rating * -1) % 10
+    else:
+        raise Exception("Sorry, no centroid in the input.")
 
 
+    suitability_to_event_rating = get_suitability_to_event_rating(satellite,event_type)
 
-        satellite_object_with_all_ratings = {
-            "family": satellite["family"],
-            "name": satellite["name"],
-            "rating": overall_rating,
-            "details": {
-                "timeliness": timeliness_rating,
-                "suitability_to_weather_type": suitability_to_weather_rating,
-                "suitability_to_time_of_the_day": suitability_to_time_of_day_rating,
-                "suitability_to_event_type": suitability_to_event_rating,
-                "geographical_definition": spatial_resolution_rating,
-                "frequency_of_update": frequency_of_update_rating,
-                "apiURL": satellite["apiName"],
-                "price": price_rating,
-                "data_quality": data_quality_rating
-            }
+    suitability_to_weather_rating= get_suitability_to_weather_rating(satellite)
+
+    suitability_to_time_of_day_rating= get_suitability_to_time_of_day_rating(satellite)
+
+    spatial_resolution_rating= get_spatial_resolution_rating(satellite)
+
+    frequency_of_update_rating= get_frequency_of_update_rating(satellite)
+
+    price_rating = get_price_rating(satellite)
+
+    data_quality_rating = get_data_quality_rating(satellite)
+
+    overall_rating = (weights["timeliness"] * timeliness_rating + \
+                     weights["suitability_to_weather_type"] * suitability_to_weather_rating + \
+                     weights["suitability_to_time_of_the_day"] * suitability_to_time_of_day_rating + \
+                     weights["suitability_to_event_type"] * suitability_to_event_rating + \
+                     weights["spatial_resolution"] * spatial_resolution_rating + \
+                     weights["frequency_of_update"] * frequency_of_update_rating + \
+                     weights["price"] * price_rating + \
+                     weights["data_quality"] * data_quality_rating) / \
+                     sum(weights.values())
+
+
+
+    satellite_object_with_all_ratings = {
+        "family": satellite["family"],
+        "name": satellite["name"],
+        "rating": overall_rating,
+        "details": {
+            "timeliness": timeliness_rating,
+            "suitability_to_weather_type": suitability_to_weather_rating,
+            "suitability_to_time_of_the_day": suitability_to_time_of_day_rating,
+            "suitability_to_event_type": suitability_to_event_rating,
+            "geographical_definition": spatial_resolution_rating,
+            "frequency_of_update": frequency_of_update_rating,
+            "apiURL": satellite["apiName"],
+            "price": price_rating,
+            "data_quality": data_quality_rating
         }
+    }
 
-        filtered_satellites.append(satellite_object_with_all_ratings)
+    filtered_satellites.append(satellite_object_with_all_ratings)
 
     sorted_satellite_objects = sorted(filtered_satellites, key=lambda x: x['rating'], reverse=True)
 
