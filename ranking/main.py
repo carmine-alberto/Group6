@@ -79,7 +79,7 @@ def create_subareas_ranking(subareas):
 
                 rankings.append({
                     "centroid": {"lat": lat, "lon": lon, "alt": alt},
-                    "ranking": subarea_ranking
+                    "ranking": copy.deepcopy(subarea_ranking)
                 })
 
             print(rankings)
