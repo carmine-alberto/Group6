@@ -5,8 +5,9 @@ import json
 
 
 #Local imports
-from utils import parse_body
-from main import create_ranking
+from ranking.utils import parse_body
+from ranking.main import create_ranking
+
 
 rankings = []
 

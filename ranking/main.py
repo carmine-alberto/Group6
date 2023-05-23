@@ -26,7 +26,7 @@ def create_ranking(subarea_parameters, weather_details, event_type, satellites):
         subareas_keys = list(subareas[0].keys())
 
         if subareas != "error":
-            for index, subarea_key in enumerate(subareas_keys): #if enumerate doesnt work on keys, go list(keys)
+            for index, subarea_key in enumerate(subareas_keys): #if enumerate doesn't work on keys, go list(keys)
 
                 subarea_parameters = pandas.DataFrame(subareas(subarea_key))
 
@@ -34,24 +34,25 @@ def create_ranking(subarea_parameters, weather_details, event_type, satellites):
                 aoi_id = subarea_parameters["AOI_ID"][0]
                 lat, lon = geohash.decode(subarea_key)
                 alt = 0
-                #TODO understand what happens with this one geometry = subarea_parameters["features"][0]["geometry"]
+                day = subareas[-1]["day"]
+                month = subareas[-1]["month"]
+                year = subareas[-1]["year"]
+                hour = "06"
+                minutes = "30"
+                seconds = "00"
+
+                event_type = subareas[-1]["eventType"]
 
                 date_format = "%Y-%m-%dT%H:%M:%S"
-                timestamp = datetime.datetime.strptime(subarea_parameters["features"][0]["properties"]["time"],
+                datetime = year + "-" + month + "-" + day + "T" + hour + ":" + minutes + ":" + seconds
+                timestamp = datetime.datetime.strptime(datetime,
                                                        date_format)  # 6 Feb 23 - Comment when out of demo
 
-                weather_details = {
-                    "visibility": 1 - float(subarea_parameters["features"][0]["properties"]["cloudcover"]) / 100,
-                    "isDay": True if subarea_parameters["features"][0]["properties"]["day/night"] == 0 else False
-                    # 0 for day
-                }
-
-                event_type = "EARTHQUAKE"  # TODO MISSING: ask them
 
                 satellites = master_satellites
 
                 n2yo_url = "https://api.n2yo.com/rest/v1/satellite/tle/"
-                api_key = "apiKey=RFLDHD-2N265V-UFLW6Z-512K"
+                api_key = "RFLDHD-2N265V-UFLW6Z-512K"
 
                 # Call n2yo to check what satellites are close to the received area
 
@@ -60,28 +61,33 @@ def create_ranking(subarea_parameters, weather_details, event_type, satellites):
                 Removed, now using N2YO
                 tle_url = "https://tle.ivanstanojevic.me/api/tle/"
                 '''
+                target_location = {
+                    "lat": lat,
+                    "lon": lon,
+                    "alt": alt
+                }
+
                 for satellite in satellites:
                     sat_id = satellite["id"]
-                    n2yo_endpoint = n2yo_url + sat_id + "?" + api_key
+                    n2yo_endpoint = n2yo_url + sat_id + "?" + "apiKey=" + api_key
 
                     if external_API_enabled:
+                        # TODO Check for errors or missing satellites - exception? if-else on error code?
                         satellite_data_request = requests.get(n2yo_endpoint)
                         satellite_data = satellite_data_request.json()
 
                         tle = satellite_data["tle"].split(sep="\r\n")
                         satellite["line1"] = tle[0]
-                        satellite["line2"] = tle[1] #TODO make sure this the lines are extracted properly
+                        satellite["line2"] = tle[1] #TODO make sure the lines are extracted properly
 
-                    # Attach estimatedTravelTime to each satellite
-
-                    satellite["travelTime"] = calculate_travel_time_and_orbit_duration(satellite, target_location, timestamp)
+                    # Attach estimatedTravelTime to each satellite and obtain weather details in that specific location
+                    satellite["travelTime"], weather_details = calculate_travel_time_and_orbit_duration(satellite, target_location, timestamp, subarea_parameters)
 
                 subarea_ranking = rank_satellites(subarea_parameters, weather_details, event_type, satellites)
 
                 rankings.append({
                     "id": {"event_id": event_id, "aoi_id": aoi_id},
-                    "centroid": centroid,
-                    "geometry": geometry,
+                    "centroid": {"lat": lat, "lon": lon, "alt": alt},
                     "ranking": subarea_ranking
                 })
 
