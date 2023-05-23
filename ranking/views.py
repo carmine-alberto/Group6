@@ -30,7 +30,7 @@ def index(request):
     reply = {}
     #Input checks on query parameters
     ''''''
-    if aoi_id<1 or aoi_id>999:
+    if int(aoi_id)<1 or int(aoi_id)>999:
         reply['ranking'] = "The provided ID tuple doesn't have the correct format: the aoi has not a correct id"
 
     event_id_sep=event_id.split(sep='-')
