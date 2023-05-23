@@ -41,7 +41,7 @@ def index(request):
         output_ranking = []
         ranking_exists = False
         for ranking in event_aoi_rankings:
-            if ranking["event_id"] == event_id and ranking["aoi_id"]["aoi_id"] == aoi_id:
+            if ranking["event_id"] == event_id and ranking["aoi_id"] == aoi_id:
                 ranking_exists = True
                 output_ranking = ranking
                 break
