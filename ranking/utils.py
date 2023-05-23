@@ -1,9 +1,14 @@
 import json
 from datetime import datetime
 
+import dateutil
+
+HOURS_PER_DAY = 24
+MINUTES_PER_HOUR = 60
+SECONDS_PER_MINUTE = 60
 
 def parse_body():
-    with open('../example.json', 'r') as file:
+    with open('example.json', 'r') as file:
         json_dict = json.load(file)
 
         return json_dict
@@ -15,7 +20,10 @@ def interpolate(left_val, right_val, weight):
     return left_val * weight + right_val * (1-weight)
 
 
-
-
-
+def validate_date(date):
+    try:
+        dateutil.parser.parse(date)
+        return True
+    except Exception as e:
+        return False
 

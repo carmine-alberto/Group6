@@ -10,7 +10,7 @@ from ranking.localdata import master_satellites
 from ranking.ranking import rank_satellites
 from ranking.timeliness import calculate_travel_time_and_weather_details
 from ranking.localdata import external_API_enabled
-from ranking.utils import parse_body
+from ranking.utils import parse_body, get_timestamp
 
 TESTING_FACTOR = 1
 MINIMUM_TIME_BETWEEN_EVENTS = 300 * TESTING_FACTOR
@@ -19,34 +19,34 @@ MINIMUM_TIME_AFTER_FAILURE = 60 * TESTING_FACTOR
 
 rankings = []
 
-def create_ranking(subarea_parameters, satellites):
+def get_rankings():
+    return rankings
+def create_ranking(subareas):
 
-        subareas = parse_body()
-
+        #TODO handle concatenated version
         subareas_keys = list(subareas[0].keys())
 
         if subareas != "error":
             for index, subarea_key in enumerate(subareas_keys): #if enumerate doesn't work on keys, go list(keys)
 
-                subarea_parameters = pandas.DataFrame(subareas(subarea_key))
+                subarea_parameters = pandas.DataFrame(subareas[0][subarea_key])
 
                 event_id = subarea_parameters["EventID"][0]
                 aoi_id = subarea_parameters["AOI_ID"][0]
                 lat, lon = geohash.decode(subarea_key)
                 alt = 0
-                day = subareas[-1]["day"]
-                month = subareas[-1]["month"]
-                year = subareas[-1]["year"]
+                day = "22"#TODO check new format subareas[-1]["day"]
+                month = "05" #^subareas[-1]["month"]
+                year = "2023" #^subareas[-1]["year"]
                 hour = "06"
                 minutes = "30"
                 seconds = "00"
 
-                event_type = subareas[-1]["eventType"]
+                event_type = "EARTHQUAKE" #^subareas[-1]["eventType"]
 
                 date_format = "%Y-%m-%dT%H:%M:%S"
                 datetime = year + "-" + month + "-" + day + "T" + hour + ":" + minutes + ":" + seconds
-                timestamp = datetime.datetime.strptime(datetime,
-                                                       date_format)  # 6 Feb 23 - Comment when out of demo
+                timestamp = get_timestamp(datetime, date_format)  # 6 Feb 23 - Comment when out of demo
 
                 '''
                 # Call to NASA API to get satellite TLE data
@@ -73,7 +73,7 @@ def create_ranking(subarea_parameters, satellites):
 
                         tle = satellite_data["tle"].split(sep="\r\n")
                         satellite["line1"] = tle[0]
-                        satellite["line2"] = tle[1] #TODO make sure the lines are extracted properly
+                        satellite["line2"] = tle[1]
 
                     # Attach estimatedTravelTime to each satellite and obtain weather details in that specific location
                     satellite["travelTime"], satellite["weatherConditions"] = \

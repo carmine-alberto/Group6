@@ -4,9 +4,9 @@ from pyorbital.orbital import Orbital
 from ranking.localdata import external_API_enabled
 from ranking.utils import get_timestamp, interpolate
 
-HOURS_PER_DAY = 24
-MINUTES_PER_HOUR = 60
-SECONDS_PER_MINUTE = 60
+from ranking.utils import HOURS_PER_DAY
+from ranking.utils import MINUTES_PER_HOUR
+from ranking.utils import SECONDS_PER_MINUTE
 SLACK = 1
 
 # REQUIRES
@@ -61,18 +61,17 @@ def calculate_travel_time_and_weather_details(satellite_data, target_location, t
     #ASSUMPTION: that regularity is maintained.
     last_available_forecast_time = get_timestamp(subarea_parameters["time"][-1])
     if arrival_timestamp <= last_available_forecast_time:
-        left_offset = delta_arrival_forecast / MINUTES_PER_HOUR / SECONDS_PER_MINUTE
+        left_offset = int(delta_arrival_forecast.total_seconds() / MINUTES_PER_HOUR / SECONDS_PER_MINUTE)
     else:
         left_offset = subarea_parameters["time"].count() - 2 #It's a stopgap solution for low-availability-of-data environments
     right_offset = left_offset + 1
 
 
     delta_arrival_closest = arrival_timestamp - get_timestamp(subarea_parameters["time"][left_offset])
-    position_in_hourly_interval = delta_arrival_closest.total_seconds() / MINUTES_PER_HOUR * SECONDS_PER_MINUTE #TODO check it's float
-    weight = position_in_hourly_interval / 100
+    weight = delta_arrival_closest.total_seconds() / MINUTES_PER_HOUR / SECONDS_PER_MINUTE
     visibility, is_day = populate_weather_params(subarea_parameters, left_offset, right_offset, weight)
 
-    return delta_arrival_event.total_seconds(), {"visibility": visibility, "is_day": is_day}
+    return delta_arrival_event.total_seconds(), {"visibility": visibility, "isDay": is_day}
 
 
 def populate_weather_params(subarea_parameters, left_offset, right_offset, weight):

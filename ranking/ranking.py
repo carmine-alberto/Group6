@@ -1,6 +1,10 @@
 from ranking.localdata import weights, master_satellites
 
-#For better performance, max/min of different fields should be calculated just once in a single loop. Negligible improvement with our dataset -> we won't care.
+from ranking.utils import HOURS_PER_DAY
+from ranking.utils import MINUTES_PER_HOUR
+from ranking.utils import SECONDS_PER_MINUTE
+
+#### PERFORMANCE: For better performance, max/min of different fields should be calculated just once in a single loop. Negligible improvement with our dataset -> we won't care.
 
 #ENSURES
 #travelTime returned in seconds
@@ -63,12 +67,10 @@ def rank_satellites(subarea, event_type, satellites):
     filtered_satellites = []
     for satellite in satellites:
       satellite_travel_time = float(satellite["travelTime"])
-      timeliness_rating = 10 * (1 - satellite_travel_time/float(satellite["temporalResolution"]))
+      timeliness_rating = 10 * (1 - satellite_travel_time/(float(satellite["temporalResolution"]) * HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE))
 
       if timeliness_rating < 0:
           timeliness_rating = (timeliness_rating * -1) % 10
-    else:
-        raise Exception("Sorry, no centroid in the input.")
 
 
     suitability_to_event_rating = get_suitability_to_event_rating(satellite,event_type)

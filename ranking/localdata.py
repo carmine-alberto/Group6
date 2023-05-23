@@ -1,6 +1,6 @@
 from enum import Enum
 
-external_API_enabled = False
+external_API_enabled = True
 
 class eventTypes(Enum):
 
