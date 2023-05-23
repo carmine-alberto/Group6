@@ -10,7 +10,7 @@ from ranking.localdata import master_satellites
 from ranking.ranking import rank_satellites
 from ranking.timeliness import calculate_travel_time_and_orbit_duration
 from ranking.localdata import external_API_enabled
-from utils import parse_body
+from ranking.utils import parse_body
 
 TESTING_FACTOR = 1
 MINIMUM_TIME_BETWEEN_EVENTS = 300 * TESTING_FACTOR

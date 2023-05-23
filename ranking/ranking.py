@@ -43,9 +43,9 @@ def get_spatial_resolution_rating(satellite):
     return spatial_resolution_rating
 
         
-MAX_FOU = max(master_satellites, key=lambda satellite: satellite["frequencyOfUpdate"])["frequencyOfUpdate"]
+MAX_FOU = max(master_satellites, key=lambda satellite: satellite["temporalResolution"])["temporalResolution"]
 def get_frequency_of_update_rating(satellite):
-    frequency_of_update_rating = (1 - satellite["frequencyOfUpdate"]/MAX_FOU) * 10
+    frequency_of_update_rating = (1 - satellite["temporalResolution"]/MAX_FOU) * 10
     return frequency_of_update_rating
         
 MAX_PRICE = max(master_satellites, key=lambda satellite: satellite["price"])["price"]

@@ -170,7 +170,7 @@ master_satellites = [
         "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
         "visibility_threshold": 0.3,
         "spatialResolution": 0.5,
-        "temporalResolution": 1.7, #in days
+        "temporalResolution": 1.7, #TODO .7?
         "swathWidth": 17.6,
         "orbitDuration": "", #with the function
         "worksDuringNight": False, 
@@ -187,7 +187,7 @@ master_satellites = [
         "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
         "visibility_threshold": 0.3,
         "spatialResolution": 0.5,
-        "temporalResolution": "", #in days
+        "temporalResolution": 1, #in days
         "swathWidth": 60,
         "orbitDuration": "", #with the function
         "worksDuringNight": True, 
@@ -198,6 +198,7 @@ master_satellites = [
 ]
 
 #TODO Remove comments when the list is ready
+#add Airbus temporalResolution
 
 '''
     {
