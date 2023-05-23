@@ -2,16 +2,16 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 import json
-import dateutil
+
 
 from django.views.decorators.csrf import csrf_exempt
 
 #Local imports
 from ranking.utils import parse_body
 from ranking.utils import validate_date
-from ranking.main import create_ranking, get_rankings
+from ranking.main import create_subareas_ranking
 
-
+event_aoi_rankings = []
 @csrf_exempt
 def index(request):
     if request.method == "GET":
@@ -38,31 +38,28 @@ def index(request):
         elif event_id_sep[4].isalpha()==False: 
             reply['ranking'] = "The provided ID tuple doesn't have the correct format: the event type is wrong"
         '''
-
-        rankings = get_rankings()
-
+        output_ranking = []
         ranking_exists = False
-        for ranking in rankings:
-            if ranking["id"]["event_id"] == event_id and ranking["id"]["aoi_id"] == aoi_id:
+        for ranking in event_aoi_rankings:
+            if ranking["event_id"] == event_id and ranking["aoi_id"]["aoi_id"] == aoi_id:
                 ranking_exists = True
-                satList = ranking
+                output_ranking = ranking
                 break
 
 
         if not ranking_exists:
-            ranking = create_ranking(subareas)
+            subareas_ranking = create_subareas_ranking(subareas)
+            output_ranking = {
+                "ranking_ord": "desc",
+                'event_id': event_id,
+                'aoi_id': aoi_id,
+                'subareas': subareas_ranking
+            }
 
-            rankings.append(ranking)
+            event_aoi_rankings.append(output_ranking) #TODO clone somewhere, here or in the return statement
 
         reply = {}
-        reply['ranking'] = {
-            "ranking_ord": "desc",
-            'event_id': event_id,
-            'aoi_id': aoi_id,
-            'sub_area_centroid': [ranking["centroid"]["lat"], ranking["centroid"]["lon"], ranking["centroid"]["alt"]],
-            #'geometry': ranking["geometry"],
-            'satList': satList["ranking"]
-        }
+        reply['ranking'] = output_ranking
 
         #TODO Return JSON, not HTTP
         return HttpResponse(json.dumps(reply))

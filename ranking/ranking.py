@@ -66,12 +66,13 @@ def get_data_quality_rating(satellite):
 def rank_satellites(subarea, event_type, satellites):
     filtered_satellites = []
     for satellite in satellites:
-      satellite_travel_time = float(satellite["travelTime"])
-      timeliness_rating = 10 * (1 - satellite_travel_time/(float(satellite["temporalResolution"]) * HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE))
+        satellite_travel_time = float(satellite["travelTime"])
+        timeliness_rating = 10 * (1 - satellite_travel_time/(float(satellite["temporalResolution"]) * HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE))
 
-      if timeliness_rating < 0:
-          timeliness_rating = (timeliness_rating * -1) % 10
-
+        '''
+        if timeliness_rating < 0:
+            timeliness_rating = (timeliness_rating * -1) % 10
+        '''
 
     suitability_to_event_rating = get_suitability_to_event_rating(satellite,event_type)
 

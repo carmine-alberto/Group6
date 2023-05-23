@@ -2,7 +2,7 @@ import datetime
 import pandas
 import requests
 import geohash
-
+import copy
 
 
 #Local imports
@@ -17,12 +17,10 @@ MINIMUM_TIME_BETWEEN_EVENTS = 300 * TESTING_FACTOR
 MINIMUM_TIME_AFTER_FAILURE = 60 * TESTING_FACTOR
 
 
-rankings = []
 
-def get_rankings():
-    return rankings
-def create_ranking(subareas):
 
+def create_subareas_ranking(subareas):
+        rankings = []
         #TODO handle concatenated version
         subareas_keys = list(subareas[0].keys())
 
@@ -31,8 +29,6 @@ def create_ranking(subareas):
 
                 subarea_parameters = pandas.DataFrame(subareas[0][subarea_key])
 
-                event_id = subarea_parameters["EventID"][0]
-                aoi_id = subarea_parameters["AOI_ID"][0]
                 lat, lon = geohash.decode(subarea_key)
                 alt = 0
                 day = "22"#TODO check new format subareas[-1]["day"]
@@ -82,12 +78,12 @@ def create_ranking(subareas):
                 subarea_ranking = rank_satellites(subarea_parameters, event_type, satellites)
 
                 rankings.append({
-                    "id": {"event_id": event_id, "aoi_id": aoi_id},
                     "centroid": {"lat": lat, "lon": lon, "alt": alt},
                     "ranking": subarea_ranking
                 })
 
             print(rankings)
+            return copy.deepcopy(rankings)
         else:
             print("Empty reply: no events")
 
