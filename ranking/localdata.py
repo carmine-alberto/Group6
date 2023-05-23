@@ -34,7 +34,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION, eventTypes.STORM],
         "visibility_threshold": 0.7,    
         "spatialResolution": 250,
-        "frequencyOfUpdate": 0.5,
+        "temporalResolution": 2, #in days
         "swathWidth": 2.330, #in km
         "orbitDuration": "76000", #should be in seconds - It could be found using tle.period
         "worksDuringNight": True, 
@@ -51,7 +51,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION, eventTypes.STORM],
         "visibility_threshold": 0.85,    
         "spatialResolution": 250,
-        "frequencyOfUpdate": 1,
+        "temporalResolution": 2, #in days
         "swathWidth": 2330, #in km
         "orbitDuration": "", #should be in seconds - It could be found using tle.period
         "worksDuringNight": False,
@@ -68,7 +68,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.EARTHQUAKE, eventTypes.OIL_SPILL],
         "visibility_threshold": 1,
         "spatialResolution": 5,
-        "frequencyOfUpdate": 6,
+        "temporalResolution": 12, #in days
         "swathWidth": 250, #km
         "orbitDuration": "", #with the function
         "worksDuringNight": True, 
@@ -85,7 +85,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FIRE, eventTypes.FLOOD, eventTypes.VOLCANIC_ERUPTION, eventTypes.OIL_SPILL],
         "visibility_threshold": 0.9,
         "spatialResolution": 10,
-        "frequencyOfUpdate": 5,
+        "temporalResolution": 5, #in days
         "swathWidth": 290,
         "orbitDuration": "", #with the function
         "worksDuringNight": False, 
@@ -102,7 +102,7 @@ master_satellites = [
         "eventTypes": [eventTypes.STORM, eventTypes.TSUNAMI],
         "visibility_threshold": 0.9,
         "spatialResolution": 300,
-        "frequencyOfUpdate": 1,
+        "temporalResolution": 2, #in days
         "swathWidth": 1270,
         "orbitDuration": "", #with the function
         "worksDuringNight": True,
@@ -119,7 +119,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION],
         "visibility_threshold": 0.7,
         "spatialResolution": 15,
-        "frequencyOfUpdate": 16,
+        "temporalResolution": 16, #in days
         "swathWidth": 185,
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
@@ -136,7 +136,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL],
         "visibility_threshold": 0.7,
         "spatialResolution": 0.7,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 3, #in days
         "swathWidth": 12,
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
@@ -146,14 +146,14 @@ master_satellites = [
     },
     {
         "family": "Planet",
-        "name": "Landsat-7", # SKYSAT-17"
+        "name": "Skysat-17",
         "id": "39418",
         "apiName": "https://www.planet.com/contact-sales/",
         "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.9,
         "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1, 
+        "temporalResolution": 1, #in days 
         "swathWidth": 16,
         "orbitDuration": "", #with the function
         "worksDuringNight": False, 
@@ -170,7 +170,7 @@ master_satellites = [
         "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
         "visibility_threshold": 0.3,
         "spatialResolution": 0.5,
-        "frequencyOfUpdate": 1,
+        "temporalResolution": 1.7, #in days
         "swathWidth": 17.6,
         "orbitDuration": "", #with the function
         "worksDuringNight": False, 
@@ -180,14 +180,14 @@ master_satellites = [
     },
     {
         "family": "Airbus",
-        "name": "SPOT-6", #ONEWEB-0066"
+        "name": "ONEWEB-0066",
         "id": "45424",
         "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
         "travelTime": "",
         "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
         "visibility_threshold": 0.3,
         "spatialResolution": 0.5,
-        "frequencyOfUpdate": 1,
+        "temporalResolution": "", #in days
         "swathWidth": 60,
         "orbitDuration": "", #with the function
         "worksDuringNight": True, 
@@ -209,7 +209,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.9,
         "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
+        "temporalResolution": 1, #in days
         "swathWidth": 16, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
@@ -226,7 +226,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 10, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False, 
@@ -243,7 +243,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 10, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
@@ -260,7 +260,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 16, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
@@ -277,7 +277,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 16, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
@@ -294,7 +294,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 16, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
@@ -311,7 +311,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 16, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
@@ -328,7 +328,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 16, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
@@ -345,7 +345,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 16, 
         "orbitDuration": "", #with the function
         "worksDuringNight": True,
@@ -362,7 +362,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 16, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
@@ -379,7 +379,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 16, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False, #and also during day
@@ -396,7 +396,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 16, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
@@ -413,7 +413,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 16, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
@@ -430,7 +430,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 16, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
@@ -447,7 +447,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 16, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False, 
@@ -464,7 +464,7 @@ master_satellites = [
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
         "visibility_threshold": 0.85,
         "spatialResolution": 1,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 1, #in days
         "swathWidth": 16, 
         "orbitDuration": "", #with the function
         "worksDuringNight": False, 
@@ -483,7 +483,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.2,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True, 
@@ -500,7 +500,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.3,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True, 
@@ -517,7 +517,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.4,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True, 
@@ -534,7 +534,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.5,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True,
@@ -551,7 +551,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.6,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True,
@@ -568,7 +568,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.7,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True,
@@ -585,7 +585,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.8,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True,
@@ -602,7 +602,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.9,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True, 
@@ -619,7 +619,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.10,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True, 
@@ -636,7 +636,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.11,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True, 
@@ -653,7 +653,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.12,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True, 
@@ -670,7 +670,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.13,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True, 
@@ -687,7 +687,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.14,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True, 
@@ -704,7 +704,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.15,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True, 
@@ -721,7 +721,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.16,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True, 
@@ -738,7 +738,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.17,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True, 
@@ -755,7 +755,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.18,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True, 
@@ -772,7 +772,7 @@ master_satellites = [
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.19,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": " ", #in days
     "swathWidth": 16,
     "orbitDuration": "", #with the function
     "worksDuringNight": True, 
@@ -792,7 +792,7 @@ master_satellites = [
     "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
     "visibility_threshold": 0.3,
     "spatialResolution": 0.46,
-    "frequencyOfUpdate": 3,
+    "temporalResolution": 1.7, #in days
     "swathWidth": 16.4,
     "orbitDuration": "", #with the function
     "worksDuringNight": False, 
@@ -809,7 +809,7 @@ master_satellites = [
     "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
     "visibility_threshold": 0.4,
     "spatialResolution": 0.31,
-    "frequencyOfUpdate": 3,
+    "temporalResolution": 1.7, #in days
     "swathWidth": 13.1,
     "orbitDuration": "", #with the function
     "worksDuringNight": False, 
@@ -826,7 +826,7 @@ master_satellites = [
     "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
     "visibility_threshold": 0.4,
     "spatialResolution": 0.31,
-    "frequencyOfUpdate": 3,
+    "temporalResolution": 1.7, #in days
     "swathWidth": 13.1,
     "orbitDuration": "", #with the function
     "worksDuringNight": False, 
