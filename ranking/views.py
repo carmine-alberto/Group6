@@ -12,7 +12,7 @@ rankings = []
 
 def index(request):
     if request.method == "POST":
-        body = parse_body()
+        body = parse_body() #WEATHER DATA + EVENT + AOI + LOCATION
         event_id = body['event_id']
         aoi_id = body['aoi_id']
 
