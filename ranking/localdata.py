@@ -1,6 +1,6 @@
 from enum import Enum
 
-external_API_enabled = True
+NASA = False
 
 class eventTypes(Enum):
 
@@ -26,67 +26,66 @@ weights = {
 
 master_satellites = [
     {
-        #completed
         "family": "Modis",
         "name": "Aqua",
         "id": "27424",
         "apiName": "https://planetarycomputer.microsoft.com/api/stac/v1",
         "travelTime": "",
-        "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION],
+        "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION, eventTypes.STORM],
         "visibility_threshold": 0.7,    
         "spatialResolution": 250,
-        "frequencyOfUpdate": 0.5,
+        "temporalResolution": 2, #in days
         "swathWidth": 2.330, #in km
         "orbitDuration": "76000", #should be in seconds - It could be found using tle.period
         "worksDuringNight": True, 
         "worksDuringDay": True, 
-        "price": 6, #group 7
+        "price": 6,
         "dataQualityRating": 10
     },
-    {   #completed
+    {   
         "family": "Modis",
         "name": "Terra",
         "id": "25994",
         "apiName": "https://planetarycomputer.microsoft.com/api/stac/v1",
         "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION, eventTypes.STORM],
-        "visibility_threshold": 0.7,    
+        "visibility_threshold": 0.85,    
         "spatialResolution": 250,
-        "frequencyOfUpdate": 1,
+        "temporalResolution": 2, #in days
         "swathWidth": 2330, #in km
         "orbitDuration": "", #should be in seconds - It could be found using tle.period
-        "worksDuringNight": True,
+        "worksDuringNight": False,
         "worksDuringDay": True, 
-        "price": 6, #group 7
+        "price": 6, 
         "dataQualityRating": 10
     },
     {   
-        #completed
         "family": "Sentinel",
         "name": "Sentinel-1A",
         "id": "39634",
         "apiName": "https://planetarycomputer.microsoft.com/api/stac/v1",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.EARTHQUAKE, eventTypes.OIL_SPILL],
-        "visibility_threshold": 0,
+        "visibility_threshold": 1,
         "spatialResolution": 5,
-        "frequencyOfUpdate": 6,
+        "temporalResolution": 12, #in days
         "swathWidth": 250, #km
         "orbitDuration": "", #with the function
         "worksDuringNight": True, 
-        "worksDuringDay": False, 
-        "price": 0, #from group 7
+        "worksDuringDay": True, 
+        "price": 0, 
         "dataQualityRating": 10
     },
     {   
-        #completed
         "family": "Sentinel",
-        "name": "Sentinel-5P", #It's actually S-2 but maybe it's not supported
+        "name": "Sentinel-5P",
         "id": "40697",
         "apiName": "https://planetarycomputer.microsoft.com/api/stac/v1",
+        "travelTime": "",
         "eventTypes": [eventTypes.FIRE, eventTypes.FLOOD, eventTypes.VOLCANIC_ERUPTION, eventTypes.OIL_SPILL],
         "visibility_threshold": 0.9,
         "spatialResolution": 10,
-        "frequencyOfUpdate": 5,
+        "temporalResolution": 5, #in days
         "swathWidth": 290,
         "orbitDuration": "", #with the function
         "worksDuringNight": False, 
@@ -95,15 +94,15 @@ master_satellites = [
         "dataQualityRating": 10
     },
     {
-        #completed
         "family": "Sentinel",
         "name": "Sentinel-3A",
         "id": "41335",
         "apiName": "https://planetarycomputer.microsoft.com/api/stac/v1",
+        "travelTime": "",
         "eventTypes": [eventTypes.STORM, eventTypes.TSUNAMI],
         "visibility_threshold": 0.9,
         "spatialResolution": 300,
-        "frequencyOfUpdate": 1,
+        "temporalResolution": 2, #in days
         "swathWidth": 1270,
         "orbitDuration": "", #with the function
         "worksDuringNight": True,
@@ -112,15 +111,15 @@ master_satellites = [
         "dataQualityRating": 10
     },
     {
-        #completed
         "family": "Landsat",
         "name": "Landsat-8",
         "id": "39084",
         "apiName": "https://planetarycomputer.microsoft.com/api/stac/v1",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.VOLCANIC_ERUPTION],
         "visibility_threshold": 0.7,
         "spatialResolution": 15,
-        "frequencyOfUpdate": 16,
+        "temporalResolution": 16, #in days
         "swathWidth": 185,
         "orbitDuration": "", #with the function
         "worksDuringNight": False,
@@ -129,69 +128,67 @@ master_satellites = [
         "dataQualityRating": 10
     },
     {
-        #completed
         "family": "Eros",
-        "name": "EOS-Aura", #Eros-B", not supported
+        "name": "EOS-Aura", #Eros-B
         "id": "29079",
-        "apiName": "https://planetarycomputer.microsoft.com/api/stac/v1", #or "apiName": "https://apollomapping.com/buy-imagery",
+        "apiName": "https://apollomapping.com/buy-imagery",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL],
         "visibility_threshold": 0.7,
         "spatialResolution": 0.7,
-        "frequencyOfUpdate": 4,
+        "temporalResolution": 3, #in days
         "swathWidth": 12,
         "orbitDuration": "", #with the function
-        "worksDuringNight": True,
+        "worksDuringNight": False,
         "worksDuringDay": True, 
         "price": 6,
         "dataQualityRating": 10
     },
     {
-        #completed
         "family": "Planet",
-        "name": "landsat-7", # SKYSAT-A",
+        "name": "Skysat-17",
         "id": "39418",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.8,
-        "spatialResolution": 1,
-        "frequencyOfUpdate": 1, 
-        "swathWidth": 10,
+        "visibility_threshold": 0.9,
+        "spatialResolution": 0.75,
+        "temporalResolution": 1, #in days 
+        "swathWidth": 16,
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, 
+        "worksDuringNight": False, 
         "worksDuringDay": True, 
         "price": 14,
         "dataQualityRating": 10
     },
-
     {   
-        #completed
         "family": "Maxar",
-        "name": "NOAA-16", #WORLDVIEW-1 (WV-1)",
+        "name": "NOAA-16", #WORLDVIEW-1 (WV-1)"
         "id": "32060",
         "apiName": "https://securewatch.maxar.com/mapservice",
-        "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
+        "travelTime": "",
         "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
         "visibility_threshold": 0.3,
         "spatialResolution": 0.5,
-        "frequencyOfUpdate": 1,
+        "temporalResolution": 1.7, #in days
         "swathWidth": 17.6,
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, 
+        "worksDuringNight": False, 
         "worksDuringDay": True, 
         "price": 20,
         "dataQualityRating": 10
     },
     {
-        #i don't know the swath width
         "family": "Airbus",
-        "name": "SPOT-6", #ONEWEB-0066",
+        "name": "ONEWEB-0066",
         "id": "45424",
         "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
         "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
         "visibility_threshold": 0.3,
         "spatialResolution": 0.5,
-        "frequencyOfUpdate": 1,
-        "swathWidth": "",
+        "temporalResolution": "", #in days
+        "swathWidth": 60,
         "orbitDuration": "", #with the function
         "worksDuringNight": True, 
         "worksDuringDay": True, 
@@ -201,233 +198,260 @@ master_satellites = [
 ]
 
 #TODO Remove comments when the list is ready
-#TODO @Giulia check worksDuringNight and worksDuringDay values
 
 '''
     {
-        #completed
         "family": "Planet",
-        "name": "SKYSAT-B",
+        "name": "SKYSAT-18",
         "id": "40072",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
+        "visibility_threshold": 0.9,
         "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
+        "temporalResolution": 1, #in days
+        "swathWidth": 16, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False,
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
     {   
-        #from now on all the satelittes of PLANET are copied from SKYSAT-B
         "family": "Planet",
-        "name": "SKYSAT-C1",
+        "name": "SKYSAT-1",
         "id": "41601",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
         "swathWidth": 10, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False, 
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
     {
         "family": "Planet",
-        "name": "SKYSAT-C4",
+        "name": "SKYSAT-2",
         "id": "41771",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
         "swathWidth": 10, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False,
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
     {
         "family": "Planet",
-        "name": "SKYSAT-C13",
+        "name": "SKYSAT-13",
         "id": "43802",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False,
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
     {
         "family": "Planet",
-        "name": "SKYSAT-C14",
+        "name": "SKYSAT-14",
         "id": "45788",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False,
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
     {
         "family": "Planet",
-        "name": "SKYSAT-C16",
+        "name": "SKYSAT-16",
         "id": "45789",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False,
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
     {
         "family": "Planet",
-        "name": "SKYSAT-C15",
+        "name": "SKYSAT-15",
         "id": "45790",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False,
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
     {
         "family": "Planet",
-        "name": "SKYSAT-C5",
+        "name": "SKYSAT-5",
         "id": "41772",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False,
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
     {
         "family": "Planet",
-        "name": "SKYSAT-C3",
+        "name": "SKYSAT-3",
         "id": "41774",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": True,
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
     {
         "family": "Planet",
-        "name": "SKYSAT-C11",
+        "name": "SKYSAT-11",
         "id": "42987",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False,
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
     {
         "family": "Planet",
-        "name": "SKYSAT-C10",
+        "name": "SKYSAT-10",
         "id": "42988",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False, #and also during day
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
     {
         "family": "Planet",
-        "name": "SKYSAT-C9",
+        "name": "SKYSAT-9",
         "id": "42989",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False,
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
     {
         "family": "Planet",
-        "name": "SKYSAT-C8",
+        "name": "SKYSAT-8",
         "id": "42990",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False,
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
     {
         "family": "Planet",
-        "name": "SKYSAT-C7",
+        "name": "SKYSAT-7",
         "id": "42991",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False,
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
     {
         "family": "Planet",
-        "name": "SKYSAT-C6",
+        "name": "SKYSAT-6",
         "id": "42992",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False, 
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
@@ -436,47 +460,34 @@ master_satellites = [
         "name": "SKYSAT-C12",
         "id": "43797",
         "apiName": "https://www.planet.com/contact-sales/",
+        "travelTime": "",
         "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
+        "visibility_threshold": 0.85,
+        "spatialResolution": 1,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16, 
         "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
+        "worksDuringNight": False, 
+        "worksDuringDay": True,
         "price": 14,
         "dataQualityRating": 10
     },
-    {
-        "family": "Planet",
-        "name": "SKYSAT-C17",
-        "id": "46179",
-        "apiName": "https://www.planet.com/contact-sales/",
-        "eventTypes": [eventTypes.FLOOD, eventTypes.FIRE, eventTypes.EARTHQUAKE],
-        "visibility_threshold": 0.2,
-        "spatialResolution": 0.75,
-        "frequencyOfUpdate": 1,
-        "swathWidth": 10, 
-        "orbitDuration": "", #with the function
-        "worksDuringNight": True, #and also during day
-        "price": 14,
-        "dataQualityRating": 10
-    }
     '''
-
 '''
 {
-    #from now on these are copied from the before one
     "family": "Airbus",
     "name": "ONEWEB-0305",
     "id": "70305",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive   ",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.2,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True, 
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -485,13 +496,15 @@ master_satellites = [
     "name": "ONEWEB-0432",
     "id": "50502",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
     "visibility_threshold": 0.3,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True, 
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -500,13 +513,15 @@ master_satellites = [
     "name": "ONEWEB-0058",
     "id": "45161",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.4,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True, 
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -515,13 +530,15 @@ master_satellites = [
     "name": "ONEWEB-0303",
     "id": "70303",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.5,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True,
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -530,13 +547,15 @@ master_satellites = [
     "name": "ONEWEB-0107",
     "id": "48048",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.6,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True,
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -545,13 +564,15 @@ master_satellites = [
     "name": "ONEWEB-0053",
     "id": "45157",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.7,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True,
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -560,13 +581,15 @@ master_satellites = [
     "name": "ONEWEB-0032",
     "id": "45141",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.8,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True,
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -575,13 +598,15 @@ master_satellites = [
     "name": "ONEWEB-0012",
     "id": "44057",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.9,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True, 
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -590,13 +615,15 @@ master_satellites = [
     "name": "ONEWEB-0063",
     "id": "45448",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.10,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True, 
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -605,13 +632,15 @@ master_satellites = [
     "name": "ONEWEB-0064",
     "id": "45433",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.11,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True, 
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -620,13 +649,15 @@ master_satellites = [
     "name": "ONEWEB-0054",
     "id": "45158",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.12,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True, 
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -635,13 +666,15 @@ master_satellites = [
     "name": "ONEWEB-0033",
     "id": "45142",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.13,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True, 
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -650,13 +683,15 @@ master_satellites = [
     "name": "ONEWEB-0010",
     "id": "44058",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.14,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True, 
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -665,13 +700,15 @@ master_satellites = [
     "name": "ONEWEB-0019",
     "id": "45449",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.15,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True, 
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -680,13 +717,15 @@ master_satellites = [
     "name": "ONEWEB-0018",
     "id": "45434",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.16,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True, 
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -695,13 +734,15 @@ master_satellites = [
     "name": "ONEWEB-0056",
     "id": "45159",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.17,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True, 
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -710,13 +751,15 @@ master_satellites = [
     "name": "ONEWEB-0035",
     "id": "45143",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.18,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True, 
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 },
@@ -725,64 +768,69 @@ master_satellites = [
     "name": "ONEWEB-0008",
     "id": "44059",
     "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+    "travelTime": "",
     "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.19,
     "spatialResolution": 0.5,
-    "frequencyOfUpdate": 1,
-    "swathWidth": "",
+    "temporalResolution": " ", #in days
+    "swathWidth": 16,
     "orbitDuration": "", #with the function
-    "worksDuringNight": True, #also during day
+    "worksDuringNight": True, 
+    "worksDuringDay": True,
     "price": 12.5,
     "dataQualityRating": 10
 }
 '''
 
-'''
+''' 
 {
-    #i don't know frequency of update
     "family": "Maxar",
     "name": "WORLDVIEW-2 (WV-2)",
     "id": "35946",
     "apiName": "https://securewatch.maxar.com/mapservice",
+    "travelTime": "",
     "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
     "visibility_threshold": 0.3,
     "spatialResolution": 0.46,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": 1.7, #in days
     "swathWidth": 16.4,
     "orbitDuration": "", #with the function
     "worksDuringNight": False, 
+    "worksDuringDay": True,
     "price": 20,
     "dataQualityRating": 10
 },
 {
-    #i don't know frequency of update
     "family": "Maxar",
     "name": "WORLDVIEW-3 (WV-3)",
     "id": "40115",
     "apiName": "https://securewatch.maxar.com/mapservice",
+    "travelTime": "",
     "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.4,
     "spatialResolution": 0.31,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": 1.7, #in days
     "swathWidth": 13.1,
     "orbitDuration": "", #with the function
     "worksDuringNight": False, 
+    "worksDuringDay": True,
     "price": 20,
     "dataQualityRating": 10
 },
 { 
-    #i don't know frequency of update
     "family": "Maxar",
     "name": "WORLDVIEW-4",
     "id": "41848",
     "apiName": "https://securewatch.maxar.com/mapservice",
+    "travelTime": "",
     "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
-    "visibility_threshold": 0.3,
+    "visibility_threshold": 0.4,
     "spatialResolution": 0.31,
-    "frequencyOfUpdate": 1,
+    "temporalResolution": 1.7, #in days
     "swathWidth": 13.1,
     "orbitDuration": "", #with the function
     "worksDuringNight": False, 
+    "worksDuringDay": True,
     "price": 20,
     "dataQualityRating": 10
 },
