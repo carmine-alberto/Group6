@@ -18,12 +18,12 @@ def index(request):
         return HttpResponse(
             '<body>            <form            method = "post"            action = "http://127.0.0.1:8000/ranking/" >            <input            type = "text"            name = "input1" >            <input            type = "text"            name = "input2" >            <input            type = "submit"            value = "Submit" >        </form>        </body>')
     if request.method == "POST":
-        subareas = parse_body() #WEATHER DATA + EVENT + AOI + LOCATION
+        subareas = parse_body() #WEATHER DATA + EVENT + AOI + LOCATION TODO parse the real request body
         sxh = subareas[0]["sxh"]
         event_id = sxh["EventID"]['0'] #TODO should be sxk-independent
         aoi_id = subareas[0]["sxh"]["AOI_ID"]['0']
 
-        #Input checks on query parameters
+        #Input checks on query parameters #TODO Reenable them, in the GET request possibly
         '''
         if int(aoi_id)<1 or int(aoi_id)>999:
             reply['ranking'] = "The provided ID tuple doesn't have the correct format: the aoi has not a correct id"

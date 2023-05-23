@@ -74,7 +74,7 @@ def rank_satellites(subarea, event_type, satellites):
             timeliness_rating = (timeliness_rating * -1) % 10
         '''
 
-        suitability_to_event_rating = get_suitability_to_event_rating(satellite,event_type)
+        suitability_to_event_rating = get_suitability_to_event_rating(satellite, event_type)
 
         suitability_to_weather_rating= get_suitability_to_weather_rating(satellite)
 
