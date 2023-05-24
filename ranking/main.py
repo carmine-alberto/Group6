@@ -1,4 +1,3 @@
-import datetime
 import pandas
 import requests
 import geohash
@@ -10,14 +9,7 @@ from ranking.localdata import master_satellites
 from ranking.ranking import rank_satellites
 from ranking.timeliness import calculate_travel_time_and_weather_details
 from ranking.localdata import external_API_enabled
-from ranking.utils import parse_body, get_timestamp
-
-TESTING_FACTOR = 1
-MINIMUM_TIME_BETWEEN_EVENTS = 300 * TESTING_FACTOR
-MINIMUM_TIME_AFTER_FAILURE = 60 * TESTING_FACTOR
-
-
-
+from ranking.utils import get_timestamp
 
 def create_subareas_ranking(subareas):
         rankings = []
@@ -31,18 +23,11 @@ def create_subareas_ranking(subareas):
 
                 lat, lon = geohash.decode(subarea_key)
                 alt = 0
-                day = "22"#TODO check new format subareas[-1]["day"]
-                month = "05" #^subareas[-1]["month"]
-                year = "2023" #^subareas[-1]["year"]
-                hour = "06"
-                minutes = "30"
-                seconds = "00"
 
-                event_type = "EARTHQUAKE" #^subareas[-1]["eventType"]
+                date_format = "%Y-%m-%d %H:%M:%S"
+                event_timestamp = get_timestamp(subareas[1]["date"], date_format)
 
-                date_format = "%Y-%m-%dT%H:%M:%S"
-                datetime = year + "-" + month + "-" + day + "T" + hour + ":" + minutes + ":" + seconds
-                timestamp = get_timestamp(datetime, date_format)  # 6 Feb 23 - Comment when out of demo
+                event_type = subareas[1]["features"][0]["properties"]["type"].upper()
 
                 '''
                 # Call to NASA API to get satellite TLE data
@@ -73,7 +58,7 @@ def create_subareas_ranking(subareas):
 
                     # Attach estimatedTravelTime to each satellite and obtain weather details in that specific location
                     satellite["travelTime"], satellite["weatherConditions"] = \
-                        calculate_travel_time_and_weather_details(satellite, target_location, timestamp, subarea_parameters)
+                        calculate_travel_time_and_weather_details(satellite, target_location, event_timestamp, subarea_parameters)
 
                 subarea_ranking = rank_satellites(subarea_parameters, event_type, satellites)
 

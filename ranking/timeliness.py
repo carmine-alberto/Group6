@@ -1,5 +1,3 @@
-import datetime
-
 from pyorbital.orbital import Orbital
 from ranking.localdata import external_API_enabled
 from ranking.utils import get_timestamp, interpolate
@@ -85,8 +83,6 @@ def populate_weather_params(subarea_parameters, left_offset, right_offset, weigh
     is_day = True if subarea_parameters["is_day"][left_offset] == 1 else False
 
     return visibility, is_day
-
-
 
 
     '''

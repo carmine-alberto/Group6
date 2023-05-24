@@ -7,8 +7,10 @@ HOURS_PER_DAY = 24
 MINUTES_PER_HOUR = 60
 SECONDS_PER_MINUTE = 60
 
-def parse_body():
-    with open('example.json', 'r') as file:
+def parse_body(json_data):
+    return json.loads(json_data)
+def parse_file():
+    with open('group5_output.json', 'r') as file:
         json_dict = json.load(file)
 
         return json_dict
