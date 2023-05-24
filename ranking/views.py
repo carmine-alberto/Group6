@@ -8,15 +8,16 @@ from django.views.decorators.csrf import csrf_exempt
 
 #Local imports
 from ranking.utils import parse_file, parse_body
-from ranking.utils import validate_date
 from ranking.main import create_subareas_ranking
+
+NUMBER_OF_SUBAREAS = 3
 
 event_aoi_rankings = []
 
 #For testing purposes: the GET returns a page that can perform a POST request with a specifically-crafted body
 file_data = parse_file()
 get_body_object = [
-    dict(list(file_data[0].items())[:3]),
+    dict(list(file_data[0].items())[:NUMBER_OF_SUBAREAS]),
     file_data[1]
 ]
 @csrf_exempt
