@@ -1,4 +1,5 @@
 import json
+import geohash
 from datetime import datetime
 import itertools
 
