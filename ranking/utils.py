@@ -49,11 +49,24 @@ def get_timestamp(string, date_format = "%Y-%m-%dT%H:%M"):
 def interpolate(left_val, right_val, weight):
     return left_val * weight + right_val * (1-weight)
 
-
 def validate_date(date):
     try:
         dateutil.parser.parse(date)
         return True
     except Exception as e:
         return False
+
+    
+def extract_polygon_from_geohash(geo_hash_str):
+    bounding_box = geohash.bbox(geo_hash_str)
+    min_lat = bounding_box["e"]
+    max_lat = bounding_box["w"]
+    min_lon = bounding_box["s"]
+    max_lon = bounding_box["n"]
+
+    # Create a polygon from the bounding box coordinates
+    polygon_bb = [[[min_lat, min_lon], [min_lat, max_lon], [max_lat, max_lon], [max_lat, min_lon]]]
+
+    return polygon_bb
+
 
