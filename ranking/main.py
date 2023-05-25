@@ -24,7 +24,7 @@ def create_subareas_ranking(subareas):
 
                 lat, lon = geohash.decode(subarea_key)
                 alt = 0
-                polygon =  extract_polygon_from_geohash(subarea_key)
+                polygon = extract_polygon_from_geohash(subarea_key)
 
                 date_format = "%Y-%m-%d %H:%M:%S"
                 event_timestamp = get_timestamp(subareas[1]["date"], date_format)
@@ -67,7 +67,7 @@ def create_subareas_ranking(subareas):
                 rankings.append({
                     "centroid": {"lat": lat, "lon": lon, "alt": alt},
                     "ranking": copy.deepcopy(subarea_ranking),
-                    "geometry": {"coordinates": polygon, "type": "Polygon"}              
+                    "geometry": {"coordinates": copy.deepcopy(polygon), "type": "Polygon"}              
                 })
 
             print(rankings)
