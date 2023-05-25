@@ -10,6 +10,7 @@ from ranking.ranking import rank_satellites
 from ranking.timeliness import calculate_travel_time_and_weather_details
 from ranking.localdata import external_API_enabled
 from ranking.utils import get_timestamp
+from ranking.utils import extract_polygon_from_geohash
 
 def create_subareas_ranking(subareas):
         rankings = []
@@ -23,6 +24,7 @@ def create_subareas_ranking(subareas):
 
                 lat, lon = geohash.decode(subarea_key)
                 alt = 0
+                polygon =  extract_polygon_from_geohash(subarea_key)
 
                 date_format = "%Y-%m-%d %H:%M:%S"
                 event_timestamp = get_timestamp(subareas[1]["date"], date_format)
@@ -64,7 +66,8 @@ def create_subareas_ranking(subareas):
 
                 rankings.append({
                     "centroid": {"lat": lat, "lon": lon, "alt": alt},
-                    "ranking": copy.deepcopy(subarea_ranking)
+                    "ranking": copy.deepcopy(subarea_ranking),
+                    "geometry": {"coordinates": polygon, "type": "Polygon"}              
                 })
 
             print(rankings)
