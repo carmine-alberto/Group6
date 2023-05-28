@@ -7,6 +7,8 @@ from ranking.utils import MINUTES_PER_HOUR
 from ranking.utils import SECONDS_PER_MINUTE
 SLACK = 1
 
+#TODO Review REQUIRES
+
 # REQUIRES
 # satelliteData
 ## key1: name
@@ -22,7 +24,7 @@ SLACK = 1
 
 # ENSURES
 ## The arrival time (UTC) if the satellite is going to cross the target location
-## The orbit period
+## The weather conditions in the target location at the time of arrival
 def calculate_travel_time_and_weather_details(satellite_data, target_location, timestamp, subarea_parameters):
     # Specify the TLE data for the satellite
     line1 = satellite_data["line1"] if external_API_enabled == True else None

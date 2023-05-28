@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 #Local imports
 from ranking.utils import parse_file, parse_body
+
 from ranking.main import create_subareas_ranking
 
 NUMBER_OF_SUBAREAS = 3

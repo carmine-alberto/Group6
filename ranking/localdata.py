@@ -194,13 +194,9 @@ master_satellites = [
         "worksDuringDay": True, 
         "price": 12.5,
         "dataQualityRating": 10
-    }
-]
+    },
 
-#TODO Remove comments when the list is ready
-#add Airbus temporalResolution
 
-'''
     {
         "family": "Planet",
         "name": "SKYSAT-18",
@@ -473,366 +469,361 @@ master_satellites = [
         "price": 14,
         "dataQualityRating": 10
     },
-    '''
-'''
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0305",
-    "id": "70305",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive   ",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.2,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True, 
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0432",
-    "id": "50502",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.3,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True, 
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0058",
-    "id": "45161",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.4,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True, 
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0303",
-    "id": "70303",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.5,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True,
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0107",
-    "id": "48048",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.6,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True,
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0053",
-    "id": "45157",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.7,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True,
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0032",
-    "id": "45141",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.8,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True,
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0012",
-    "id": "44057",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.9,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True, 
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0063",
-    "id": "45448",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.10,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True, 
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0064",
-    "id": "45433",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.11,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True, 
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0054",
-    "id": "45158",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.12,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True, 
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0033",
-    "id": "45142",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.13,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True, 
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0010",
-    "id": "44058",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.14,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True, 
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0019",
-    "id": "45449",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.15,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True, 
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0018",
-    "id": "45434",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.16,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True, 
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0056",
-    "id": "45159",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.17,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True, 
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0035",
-    "id": "45143",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.18,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True, 
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-},
-{
-    "family": "Airbus",
-    "name": "ONEWEB-0008",
-    "id": "44059",
-    "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
-    "travelTime": "",
-    "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
-    "visibility_threshold": 0.19,
-    "spatialResolution": 0.5,
-    "temporalResolution": " ", #in days
-    "swathWidth": 16,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": True, 
-    "worksDuringDay": True,
-    "price": 12.5,
-    "dataQualityRating": 10
-}
-'''
-
-''' 
-{
-    "family": "Maxar",
-    "name": "WORLDVIEW-2 (WV-2)",
-    "id": "35946",
-    "apiName": "https://securewatch.maxar.com/mapservice",
-    "travelTime": "",
-    "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
-    "visibility_threshold": 0.3,
-    "spatialResolution": 0.46,
-    "temporalResolution": 1.7, #in days
-    "swathWidth": 16.4,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": False, 
-    "worksDuringDay": True,
-    "price": 20,
-    "dataQualityRating": 10
-},
-{
-    "family": "Maxar",
-    "name": "WORLDVIEW-3 (WV-3)",
-    "id": "40115",
-    "apiName": "https://securewatch.maxar.com/mapservice",
-    "travelTime": "",
-    "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
-    "visibility_threshold": 0.4,
-    "spatialResolution": 0.31,
-    "temporalResolution": 1.7, #in days
-    "swathWidth": 13.1,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": False, 
-    "worksDuringDay": True,
-    "price": 20,
-    "dataQualityRating": 10
-},
-{ 
-    "family": "Maxar",
-    "name": "WORLDVIEW-4",
-    "id": "41848",
-    "apiName": "https://securewatch.maxar.com/mapservice",
-    "travelTime": "",
-    "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
-    "visibility_threshold": 0.4,
-    "spatialResolution": 0.31,
-    "temporalResolution": 1.7, #in days
-    "swathWidth": 13.1,
-    "orbitDuration": "", #with the function
-    "worksDuringNight": False, 
-    "worksDuringDay": True,
-    "price": 20,
-    "dataQualityRating": 10
-},
-'''
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0305",
+        "id": "70305",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive   ",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.2,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0432",
+        "id": "50502",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.3,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0058",
+        "id": "45161",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.4,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0303",
+        "id": "70303",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.5,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0107",
+        "id": "48048",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.6,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0053",
+        "id": "45157",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.7,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0032",
+        "id": "45141",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.8,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0012",
+        "id": "44057",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.9,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0063",
+        "id": "45448",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.10,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0064",
+        "id": "45433",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.11,
+        "spatialResolution": 0.5,
+        "temporalResolution":  1,#in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0054",
+        "id": "45158",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.12,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0033",
+        "id": "45142",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.13,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0010",
+        "id": "44058",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.14,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0019",
+        "id": "45449",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.15,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0018",
+        "id": "45434",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.16,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0056",
+        "id": "45159",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.17,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0035",
+        "id": "45143",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.18,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Airbus",
+        "name": "ONEWEB-0008",
+        "id": "44059",
+        "apiName": "https://www.intelligence-airbusds.com/imagery/oneatlas/order-form/?oneatlas_subscription_type_of_inquiry=Pleiades_Neo_tasking_archive",
+        "travelTime": "",
+        "eventTypes": [eventTypes.VOLCANIC_ERUPTION, eventTypes.FLOOD, eventTypes.FIRE],
+        "visibility_threshold": 0.19,
+        "spatialResolution": 0.5,
+        "temporalResolution": 1, #in days
+        "swathWidth": 16,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": True,
+        "worksDuringDay": True,
+        "price": 12.5,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Maxar",
+        "name": "WORLDVIEW-2 (WV-2)",
+        "id": "35946",
+        "apiName": "https://securewatch.maxar.com/mapservice",
+        "travelTime": "",
+        "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
+        "visibility_threshold": 0.3,
+        "spatialResolution": 0.46,
+        "temporalResolution": 1.7, #in days
+        "swathWidth": 16.4,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": False,
+        "worksDuringDay": True,
+        "price": 20,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Maxar",
+        "name": "WORLDVIEW-3 (WV-3)",
+        "id": "40115",
+        "apiName": "https://securewatch.maxar.com/mapservice",
+        "travelTime": "",
+        "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
+        "visibility_threshold": 0.4,
+        "spatialResolution": 0.31,
+        "temporalResolution": 1.7, #in days
+        "swathWidth": 13.1,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": False,
+        "worksDuringDay": True,
+        "price": 20,
+        "dataQualityRating": 10
+    },
+    {
+        "family": "Maxar",
+        "name": "WORLDVIEW-4",
+        "id": "41848",
+        "apiName": "https://securewatch.maxar.com/mapservice",
+        "travelTime": "",
+        "eventTypes": [eventTypes.EARTHQUAKE, eventTypes.FLOOD, eventTypes.FIRE, eventTypes.OIL_SPILL, eventTypes.TSUNAMI],
+        "visibility_threshold": 0.4,
+        "spatialResolution": 0.31,
+        "temporalResolution": 1.7, #in days
+        "swathWidth": 13.1,
+        "orbitDuration": "", #with the function
+        "worksDuringNight": False,
+        "worksDuringDay": True,
+        "price": 20,
+        "dataQualityRating": 10
+    }
+]
